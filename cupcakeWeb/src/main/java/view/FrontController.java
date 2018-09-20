@@ -35,6 +35,9 @@ public class FrontController extends HttpServlet {
                 dispatcher = this.getServletContext().getRequestDispatcher("/OrderServlet");
                 dispatcher.forward(request, response);
                 break;
+            case "shop":
+                dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
+                dispatcher.forward(request, response);
             default:
                 throw new AssertionError();
 //                try (PrintWriter out = response.getWriter()) {
