@@ -1,5 +1,6 @@
 package view;
 
+import DTO.User;
 import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,22 +70,19 @@ public class RegistrationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Controller c = new Controller();
-        RequestDispatcher dispatcher = null;
 
-        String login = request.getParameter("login");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        if (login == null) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(regHtml());
+            if (request.getParameter("login") == null) {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(regHtml());
+                }
+            } else {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(loginHtml());
+                }
             }
-        } else {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(loginHtml());
-            }
-        }
-
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
 
         /*
         String username = (String) request.getAttribute("username");

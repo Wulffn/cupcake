@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,14 +21,26 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        Controller c = new Controller();
+
+        boolean isValid = false;
+
         RequestDispatcher dispatcher = null;
+
+        if (request.getParameter("username") != null) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            System.out.println(username + password);
+            isValid = c.checkPassword(username, password);
+        }
+
         String path = request.getPathInfo();
 
         switch (path.substring(1)) {
-
             case "registration":
-                String login = request.getParameter("login");
-                request.getSession().setAttribute("login", login);
+                request.getSession().setAttribute("login", request.getParameter("login"));
+                request.getSession().setAttribute("username", request.getParameter("username"));
+                request.getSession().setAttribute("password", request.getParameter("password"));
                 dispatcher = this.getServletContext().getRequestDispatcher("/RegistrationServlet");
                 dispatcher.forward(request, response);
                 break;
@@ -36,8 +49,10 @@ public class FrontController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case "shop":
-                dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
-                dispatcher.forward(request, response);
+                if (isValid) {
+                    dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
+                    dispatcher.forward(request, response);
+                }
             default:
                 throw new AssertionError();
 //                try (PrintWriter out = response.getWriter()) {
