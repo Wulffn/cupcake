@@ -10,5 +10,5 @@ package DTO;
  * @author Christian
  */
 public class User {
-    
+    private int id;
 }

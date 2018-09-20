@@ -13,6 +13,6 @@ import DTO.User;
  */
 public interface IUserDAO {
     public void addUser(User u);
-    public User GetUser(String Username);
+    public User getUser(String Username);
     
 }
