@@ -5,10 +5,14 @@
  */
 package interfaces;
 
+import DTO.User;
+
 /**
  *
  * @author mwn
  */
 public interface IUserDAO {
+    public void addUser(User u);
+    public User GetUser(String Username);
     
 }

@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
-
-import DTO.ItemTop;
-import DTO.ItemBottom;
-import DTO.Item;
+package DTO;
 
 /**
  *
- * @author mwn
+ * @author Christian
  */
-public interface ICupCakeDAO {
-    public Item GetItem(ItemTop IT, ItemBottom IB);
+public class ItemBottom {
+    
 }
