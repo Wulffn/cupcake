@@ -81,8 +81,24 @@ public class UserDAO implements IUserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         ResultSet rs = null;
+        try {
+            rs = c.prepareStatement(sql).executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         User user = null; 
-        
+        try {
+            if (rs.next())
+            {
+                user.setId(rs.getInt("iduser"));
+                user.setUsername(Username);
+                user.setPassword(rs.getString("password"));
+                user.setBalance(rs.getDouble("balance"));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return user;
     }
 }
