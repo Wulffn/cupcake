@@ -23,8 +23,8 @@ public class Controller {
         return password.equals(user.getPassword());
     }
 
-    public void addUser(User u) {
-        new UserDAO().addUser(u);
+    public void addUser(String name, String password) {
+        new UserDAO().addUser(new User(15, name, password, 100));
     }
 
 }

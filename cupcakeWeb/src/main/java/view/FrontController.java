@@ -30,8 +30,6 @@ public class FrontController extends HttpServlet {
         switch (path.substring(1)) {
             case "registration":
                 request.getSession().setAttribute("login", request.getParameter("login"));
-                request.getSession().setAttribute("username", request.getParameter("username"));
-                request.getSession().setAttribute("password", request.getParameter("password"));
                 dispatcher = this.getServletContext().getRequestDispatcher("/RegistrationServlet");
                 dispatcher.forward(request, response);
                 break;

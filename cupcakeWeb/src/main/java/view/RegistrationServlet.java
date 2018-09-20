@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/RegistrationServlet"})
 public class RegistrationServlet extends HttpServlet {
-    
+
     boolean isFailed = false;
 
     private String loginHtml() {
@@ -38,7 +38,7 @@ public class RegistrationServlet extends HttpServlet {
                 + "            <input type=\"text\" name=\"password\" value=\"\">\n"
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
-                + "             <p>" + (isFailed? "Wrong username or password" : "") + "</p>"
+                + "             <p>" + (isFailed ? "Wrong username or password" : "") + "</p>"
                 + "        </form>\n"
                 + "    </body>\n"
                 + "</html>";
@@ -53,15 +53,12 @@ public class RegistrationServlet extends HttpServlet {
                 + "    </head>\n"
                 + "    <body>\n"
                 + "        <h1>Registration</h1>\n"
-                + "        <form action=\"shop\" method=\"post\">\n"
-                + "            Name:<br>\n"
+                + "        <form action=\"registration?login\" method=\"post\">\n"
+                + "            Username:<br>\n"
                 + "            <input type=\"text\" name=\"name\" value=\"\">\n"
                 + "            <br>\n"
-                + "            Username:<br>\n"
-                + "            <input type=\"text\" name=\"username\" value=\"\">\n"
-                + "            <br>\n"
                 + "            Password:<br>\n"
-                + "            <input type=\"text\" name=\"password\" value=\"\">\n"
+                + "            <input type=\"text\" name=\"pass\" value=\"\">\n"
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
                 + "        </form> \n"
@@ -75,20 +72,28 @@ public class RegistrationServlet extends HttpServlet {
 
         Controller c = new Controller();
         RequestDispatcher dispatcher = null;
-        
+
         boolean isValid = false;
 
+        //Checks if request contains a parameter named "username" and authenticate the username and password if it does
         if (request.getParameter("username") != null) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             isValid = c.checkPassword(username, password);
         }
 
+        //If isValid is changed to true, the dispatcher forwards to the shop
         if (isValid) {
             dispatcher = this.getServletContext().getRequestDispatcher("/shop");
             dispatcher.forward(request, response);
         }
 
+        //Checks if request contains a parameter named "name" and adds a new user to the database
+        if (request.getParameter("name") != null) {
+            c.addUser(request.getParameter("name"), request.getParameter("pass"));
+        }
+
+        //Checks if request contains a parameter named "login", if false, registration html is printed. Else, login html is printed
         if (request.getParameter("login") == null) {
             try (PrintWriter out = response.getWriter()) {
                 out.println(regHtml());
@@ -98,24 +103,6 @@ public class RegistrationServlet extends HttpServlet {
                 out.println(loginHtml());
             }
         }
-
-        /*
-        String username = (String) request.getAttribute("username");
-        String password = (String) request.getAttribute("password");
-         */
-//        if (c.checkPassword(username, password)) {
-//            
-//        }
-        //  c.UserDAO.addUser()
-        /*
-        
-        if (username != null) {
-        
-        c.userDAO.getUsername
-            
-        }
-        
-         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
