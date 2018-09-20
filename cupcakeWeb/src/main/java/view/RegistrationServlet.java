@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/RegistrationServlet"})
 public class RegistrationServlet extends HttpServlet {
+    
+    boolean isFailed = false;
 
     private String loginHtml() {
         return "<!DOCTYPE html>\n"
@@ -27,7 +29,8 @@ public class RegistrationServlet extends HttpServlet {
                 + "    </head>\n"
                 + "    <body>\n"
                 + "        <h1>Login</h1>\n"
-                + "        <form action=\"shop\" method=\"post\">\n"
+                + "        <form action=\"registration?login\" method=\"post\">\n"
+                + "            <param name=failed value=\"\">\n"
                 + "            Username:<br>\n"
                 + "            <input type=\"text\" name=\"username\" value=\"\">\n"
                 + "            <br>\n"
@@ -35,7 +38,8 @@ public class RegistrationServlet extends HttpServlet {
                 + "            <input type=\"text\" name=\"password\" value=\"\">\n"
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
-                + "        </form> \n"
+                + "             <p>" + (isFailed? "Wrong username or password" : "") + "</p>"
+                + "        </form>\n"
                 + "    </body>\n"
                 + "</html>";
     }
@@ -70,19 +74,30 @@ public class RegistrationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Controller c = new Controller();
+        RequestDispatcher dispatcher = null;
+        
+        boolean isValid = false;
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        if (request.getParameter("username") != null) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            isValid = c.checkPassword(username, password);
+        }
 
-            if (request.getParameter("login") == null) {
-                try (PrintWriter out = response.getWriter()) {
-                    out.println(regHtml());
-                }
-            } else {
-                try (PrintWriter out = response.getWriter()) {
-                    out.println(loginHtml());
-                }
+        if (isValid) {
+            dispatcher = this.getServletContext().getRequestDispatcher("/shop");
+            dispatcher.forward(request, response);
+        }
+
+        if (request.getParameter("login") == null) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(regHtml());
             }
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(loginHtml());
+            }
+        }
 
         /*
         String username = (String) request.getAttribute("username");
