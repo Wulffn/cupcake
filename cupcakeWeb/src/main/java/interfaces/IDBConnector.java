@@ -5,10 +5,13 @@
  */
 package interfaces;
 
+import java.sql.Connection;
+
 /**
  *
  * @author mwn
  */
 public interface IDBConnector {
     
+    public Connection getConnection();
 }
