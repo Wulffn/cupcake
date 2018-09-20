@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,45 +62,27 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User getUser(String Username) {
-        Connection c = null;
+    public User getUser(String userName) {
+        String sql = "select * from user where userName = ?;";
+        int id = 0;
+        String name = null;
+        String password = null;
+        double balance = 0;
         try {
-            c = new DBConnector().getConnection();
-        } catch (Exception ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String sql = "SELECT * FROM `user` WHERE `userName` = '?'";
-        PreparedStatement cupcakePstmt = null;
-        try {
-            cupcakePstmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            cupcakePstmt.setString(1, Username);
-            cupcakePstmt.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ResultSet rs = null;
-        try {
-            rs = c.prepareStatement(sql).executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        User user = null; 
-        try {
-            if (rs.next())
-            {
-                user.setId(rs.getInt("iduser"));
-                user.setUsername(Username);
-                user.setPassword(rs.getString("password"));
-                user.setBalance(rs.getDouble("balance"));
-                
+            Connection c = new DBConnector().getConnection();
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setString(1, userName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt("iduser");
+                name = rs.getString("userName");
+                password = rs.getString("password");
+                balance = rs.getDouble("balance");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception ex) {
+            System.out.println("error");
         }
-        return user;
+        return new User(id, name, password, balance);
     }
 }
