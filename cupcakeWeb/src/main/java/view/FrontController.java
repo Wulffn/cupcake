@@ -22,9 +22,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Controller c = new Controller();
-
         boolean isValid = false;
-
         RequestDispatcher dispatcher = null;
 
         if (request.getParameter("username") != null) {
@@ -49,10 +47,26 @@ public class FrontController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case "shop":
+
                 if (isValid) {
                     dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
                     dispatcher.forward(request, response);
+                } else {
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("   <head>");
+                        out.println("       <title> en title </title>");
+                        out.println("   </head>");
+                        out.println("   <body>");
+                        out.println("       <h1> fejlede IsValid check i shop</h1>");
+                        out.println("   </body>");
+                        out.println("</html>");
+
+                    }
+
                 }
+                break;
             default:
                 throw new AssertionError();
 //                try (PrintWriter out = response.getWriter()) {
