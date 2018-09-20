@@ -76,6 +76,7 @@ public class UserDAO implements IUserDAO {
         }
         try {
             cupcakePstmt.setString(1, Username);
+            cupcakePstmt.execute();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
