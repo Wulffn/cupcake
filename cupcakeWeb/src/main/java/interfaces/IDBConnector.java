@@ -9,6 +9,6 @@ package interfaces;
  *
  * @author mwn
  */
-public class IDBConnector {
+public interface IDBConnector {
     
 }
