@@ -1,8 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,46 +17,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mark
  */
-@WebServlet(name = "FrontController", urlPatterns = {"/*"})
-public class FrontController extends HttpServlet {
+@WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})
+public class ShopServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        RequestDispatcher dispatcher = null;
-        String path = request.getPathInfo();
-
-        switch (path.substring(1)) {
-            case "registration":
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("password", password);
-                dispatcher = this.getServletContext().getRequestDispatcher("/RegistrationServlet");
-                dispatcher.forward(request, response);
-                break;
-            case "orders":
-                dispatcher = this.getServletContext().getRequestDispatcher("/OrderServlet");
-                dispatcher.forward(request, response);
-                break;
-            default:
-
-                try (PrintWriter out = response.getWriter()) {
-
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet LoginServlet</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet </h1>");
-                    out.println("</body>");
-                    out.println("</html>");
-
-                }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShopServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ShopServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
