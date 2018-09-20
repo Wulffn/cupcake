@@ -22,15 +22,12 @@ public class FrontController extends HttpServlet {
 
         RequestDispatcher dispatcher = null;
         String path = request.getPathInfo();
-    
-        
-        
+
         switch (path.substring(1)) {
+
             case "registration":
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("password", password);
+                String login = request.getParameter("login");
+                request.getSession().setAttribute("login", login);
                 dispatcher = this.getServletContext().getRequestDispatcher("/RegistrationServlet");
                 dispatcher.forward(request, response);
                 break;
@@ -39,23 +36,23 @@ public class FrontController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             default:
-
-                try (PrintWriter out = response.getWriter()) {
-
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("   <head>");
-                    out.println("       <title> en title </title>");
-                    out.println("   </head>");
-                    out.println("   <body>");
-                    out.println("       <form action=\"/cupcakeWeb/registration/\">");
-                    out.println("           <input type=\"submit\">");
-                    out.println("       </form>");
-                    out.println("       <h1>Servlet </h1>");
-                    out.println("   </body>");
-                    out.println("</html>");
-
-                }
+                throw new AssertionError();
+//                try (PrintWriter out = response.getWriter()) {
+//
+//                    out.println("<!DOCTYPE html>");
+//                    out.println("<html>");
+//                    out.println("   <head>");
+//                    out.println("       <title> en title </title>");
+//                    out.println("   </head>");
+//                    out.println("   <body>");
+//                    out.println("       <form action=\"/cupcakeWeb/registration/\">");
+//                    out.println("           <input type=\"submit\">");
+//                    out.println("       </form>");
+//                    out.println("       <h1>Servlet </h1>");
+//                    out.println("   </body>");
+//                    out.println("</html>");
+//
+//                }
         }
 
     }
