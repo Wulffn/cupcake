@@ -22,7 +22,9 @@ public class FrontController extends HttpServlet {
 
         RequestDispatcher dispatcher = null;
         String path = request.getPathInfo();
-
+    
+        
+        
         switch (path.substring(1)) {
             case "registration":
                 String username = request.getParameter("username");
@@ -42,12 +44,15 @@ public class FrontController extends HttpServlet {
 
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet LoginServlet</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet </h1>");
-                    out.println("</body>");
+                    out.println("   <head>");
+                    out.println("       <title> en title </title>");
+                    out.println("   </head>");
+                    out.println("   <body>");
+                    out.println("       <form action=\"/cupcakeWeb/registration/\">");
+                    out.println("           <input type=\"submit\">");
+                    out.println("       </form>");
+                    out.println("       <h1>Servlet </h1>");
+                    out.println("   </body>");
                     out.println("</html>");
 
                 }

@@ -22,14 +22,22 @@ public class RegistrationServlet extends HttpServlet {
 
         Controller c = new Controller();
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        /*
         String username = (String) request.getAttribute("username");
         String password = (String) request.getAttribute("password");
-
-        // if
+        */
+        if (c.checkPassword(username, password)) {
+            
+        }
+        
+          //  c.UserDAO.addUser()
+  
         /*
         
         if (username != null) {
-            c.UserDAO.addUser()
         
         c.userDAO.getUsername
             

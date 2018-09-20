@@ -5,10 +5,23 @@
  */
 package controller;
 
+import DTO.User;
+import model.UserDAO;
+
 /**
  *
  * @author Mark
  */
 public class Controller {
+    
+    public boolean checkPassword(String username, String password){
+        User user = new UserDAO().getUser(username); //ret IUserDAO til lille "getUser"
+        if(password == null || username.equals(password)) return false;
+        return password.equals(user.getPassword());
+    }
+    
+    
+    
+    
     
 }
