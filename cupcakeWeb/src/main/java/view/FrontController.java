@@ -30,7 +30,6 @@ public class FrontController extends HttpServlet {
         if (request.getParameter("username") != null) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            System.out.println(username + password);
             isValid = c.checkPassword(username, password);
         }
 

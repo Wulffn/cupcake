@@ -67,7 +67,7 @@ public class UserDAO implements IUserDAO {
         } catch (Exception ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM `cupcake` WHERE `userName` = '?'";
+        String sql = "SELECT * FROM `user` WHERE `userName` = '?'";
         PreparedStatement cupcakePstmt = null;
         try {
             cupcakePstmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
