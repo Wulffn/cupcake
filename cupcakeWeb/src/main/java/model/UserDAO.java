@@ -11,4 +11,5 @@ package model;
  */
 public class UserDAO {
     
+    String a;
 }
