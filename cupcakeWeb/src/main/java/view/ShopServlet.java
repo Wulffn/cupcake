@@ -34,15 +34,17 @@ public class ShopServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ShopServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ShopServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<html>\n"
+                    + "    <head>\n"
+                    + "        <title>TODO supply a title</title>\n"
+                    + "        <meta charset=\"UTF-8\">\n"
+                    + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                    + "    </head>\n"
+                    + "    <body>\n"
+                    + "        <div align=\"left\">USERINFO</div>\n"
+                    + "    </body>\n"
+                    + "</html>\n"
+                    + "");
         }
     }
 

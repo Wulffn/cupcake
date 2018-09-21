@@ -39,8 +39,8 @@ public class FrontController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case "shop":
-                dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
-                dispatcher.forward(request, response);
+                    dispatcher = this.getServletContext().getRequestDispatcher("/ShopServlet");
+                    dispatcher.forward(request, response);
                 break;
             default:
                 throw new AssertionError();

@@ -29,7 +29,7 @@ public class RegistrationServlet extends HttpServlet {
                 + "    <body>\n"
                 + "        <div align=\"center\">\n"
                 + "        <h1>Login</h1>\n"
-                + "        <form action=\"/registration?login\" method=\"post\">\n"
+                + "        <form action=\"registration?login\" method=\"post\"> \n"
                 + "            Username:<br>\n"
                 + "            <input type=\"text\" name=\"username\" value=\"\">\n"
                 + "            <br>\n"
@@ -91,11 +91,10 @@ public class RegistrationServlet extends HttpServlet {
             isValid = uc.checkPassword(username, password);
         }
 
-        //If isValid is changed to true, the dispatcher forwards to the shop. Sets current user to user
+        //If isValid is changed to true, the response redirects to the shop. Sets current user to user
         if (isValid) {
             uc.setCurrentUser(request.getParameter("username"));
-            dispatcher = this.getServletContext().getRequestDispatcher("/shop");
-            dispatcher.forward(request, response);
+            response.sendRedirect("shop");
         }
 
         //Checks if request contains a parameter named "name" and adds a new user to the database
