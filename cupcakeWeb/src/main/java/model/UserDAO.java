@@ -46,6 +46,7 @@ public class UserDAO implements IUserDAO {
 
         } catch (Exception ex) {
             System.out.println("error");
+            ex.printStackTrace();
         }
         return new User(id, name, userName, password, balance);
     }

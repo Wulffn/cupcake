@@ -5,14 +5,14 @@
  */
 package interfaces;
 
-import DTO.ItemTop;
-import DTO.ItemBottom;
 import DTO.Item;
+import java.util.List;
 
 /**
  *
- * @author mwn
+ * @author Christian
  */
-public interface ICupCakeDAO {
-    public Item GetItem(ItemTop IT, ItemBottom IB);
+public interface IitemDAO {
+    List<Item>ItemButton();
+    List<Item>ItemTop();
 }

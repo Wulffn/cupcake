@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.Controller;
 import controller.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,6 +36,7 @@ public class ShopServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         UserController uc = new UserController();
+        Controller c = new Controller();
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>\n"
@@ -57,7 +59,7 @@ public class ShopServlet extends HttpServlet {
                     + "            <div align=\"center\">\n"
                     + "                <h4>Top</h4>\n"
                     + "                <select>\n"
-                    + "                    <option value=\"Item1\">Item1</option>\n"
+                    + "                    <option value=\"Item1\">"+c.getTop() + "</option>\n"
                     + "                </select>\n"
                     + "            </div>\n"
                     + "            <div align=\"center\">\n"
