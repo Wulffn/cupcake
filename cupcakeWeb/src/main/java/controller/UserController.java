@@ -33,8 +33,12 @@ public class UserController {
         return currentUser;
     }
 
-    public void setCurrentUser(String username) {
-        this.currentUser = new UserDAO().getUser(username);
+    public static void setCurrentUser(String username) {
+        UserController.currentUser = new UserDAO().getUser(username);
+    }
+
+    public static void setUser(User currentUser) {
+        UserController.currentUser = currentUser;
     }
     
     

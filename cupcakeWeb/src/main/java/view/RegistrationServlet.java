@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/RegistrationServlet"})
 public class RegistrationServlet extends HttpServlet {
-    
+
     private String path = "registration?login";
 
     private String loginHtml() {
@@ -31,7 +31,7 @@ public class RegistrationServlet extends HttpServlet {
                 + "    <body>\n"
                 + "        <div align=\"center\">\n"
                 + "        <h1>Login</h1>\n"
-                + "        <form action=" + path +" method=\"post\"> \n"
+                + "        <form action=" + path + " method=\"post\"> \n"
                 + "            Username:<br>\n"
                 + "            <input type=\"text\" name=\"username\" value=\"\">\n"
                 + "            <br>\n"
@@ -92,7 +92,7 @@ public class RegistrationServlet extends HttpServlet {
             password = request.getParameter("password");
             isValid = uc.checkPassword(username, password);
         }
-
+        
         //If isValid is changed to true, the response redirects to the shop. Sets current user to user
         if (isValid) {
             this.path = "/shop";
