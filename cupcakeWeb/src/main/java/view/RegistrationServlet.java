@@ -53,12 +53,15 @@ public class RegistrationServlet extends HttpServlet {
                 + "    </head>\n"
                 + "    <body>\n"
                 + "        <h1>Registration</h1>\n"
-                + "        <form action=\"registration?login\" method=\"post\">\n"
-                + "            Username:<br>\n"
+                + "        <form action=\"registration?login\" method=\"post\"> \n"
+                + "            Name:<br>\n"
                 + "            <input type=\"text\" name=\"name\" value=\"\">\n"
                 + "            <br>\n"
+                + "            Username:<br>\n"
+                + "            <input type=\"text\" name=\"username\" value=\"\">\n"
+                + "            <br>\n"
                 + "            Password:<br>\n"
-                + "            <input type=\"text\" name=\"pass\" value=\"\">\n"
+                + "            <input type=\"text\" name=\"password\" value=\"\">\n"
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
                 + "        </form> \n"
@@ -90,7 +93,7 @@ public class RegistrationServlet extends HttpServlet {
 
         //Checks if request contains a parameter named "name" and adds a new user to the database
         if (request.getParameter("name") != null) {
-            c.addUser(request.getParameter("name"), request.getParameter("pass"));
+            c.addUser(request.getParameter("name"), request.getParameter("username"), request.getParameter("password"));
         }
 
         //Checks if request contains a parameter named "login", if false, registration html is printed. Else, login html is printed

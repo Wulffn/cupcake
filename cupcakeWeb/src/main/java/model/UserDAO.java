@@ -24,20 +24,22 @@ import java.util.logging.Logger;
 public class UserDAO implements IUserDAO {
 
     @Override
-    public User getUser(String userName) {
+    public User getUser(String searchUserName) {
         String sql = "select * from user where userName = ?;";
         int id = 0;
         String name = null;
+        String userName = null;
         String password = null;
         double balance = 0;
         try {
             Connection c = new DBConnector().getConnection();
             PreparedStatement stmt = c.prepareStatement(sql);
-            stmt.setString(1, userName);
+            stmt.setString(1, searchUserName);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("iduser");
-                name = rs.getString("userName");
+                name = rs.getString("personName");
+                userName = rs.getString("userName");
                 password = rs.getString("password");
                 balance = rs.getDouble("balance");
             }
@@ -45,16 +47,16 @@ public class UserDAO implements IUserDAO {
         } catch (Exception ex) {
             System.out.println("error");
         }
-        return new User(id, name, password, balance);
+        return new User(id, name, userName, password, balance);
     }
 
     @Override
     public void addUser(User u) {
-        String sql = "insert into user values(?,?,?,?);";
+        String sql = "insert into user(personName, userName, password, balance) values(?,?,?,?);";
         try {
             Connection c = new DBConnector().getConnection();
             PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setInt(1, u.getId());
+            preparedStatement.setString(1, u.getName());
             preparedStatement.setString(2, u.getUsername());
             preparedStatement.setString(3, u.getPassword());
             preparedStatement.setDouble(4, u.getBalance());
@@ -62,7 +64,7 @@ public class UserDAO implements IUserDAO {
             preparedStatement.executeUpdate();
             
         } catch (Exception ex) {
-            System.out.println("error");
+            ex.printStackTrace();
         }
     }
 }

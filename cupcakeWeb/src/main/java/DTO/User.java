@@ -10,49 +10,66 @@ package DTO;
  * @author Christian
  */
 public class User {
-    private int id;
-    private String Username;
-    private String Password;
-    private double Balance;
 
-    public User(int id, String Username, String Password, double Balance) {
+    private int id;
+    private String name;
+    private String username;
+    private String password;
+    private double balance;
+
+    public User(String name, String username, String password, double balance) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
+    }
+
+    public User(int id, String name, String username, String password, double balance) {
         this.id = id;
-        this.Username = Username;
-        this.Password = Password;
-        this.Balance = Balance;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getUsername() {
-        return Username;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public double getBalance() {
-        return Balance;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setUsername(String Username) {
-        this.Username = Username;
+    public String getName() {
+        return name;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setBalance(double Balance) {
-        this.Balance = Balance;
+    public String getUsername() {
+        return username;
     }
-    
-    
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
 }

@@ -23,8 +23,9 @@ public class Controller {
         return password.equals(user.getPassword());
     }
 
-    public void addUser(String name, String password) {
-        new UserDAO().addUser(new User(15, name, password, 100));
+    public void addUser(String name, String userName, String password) {
+        System.out.println("User: " + name + ", Username: " + userName + ", Pass: " + password);
+        new UserDAO().addUser(new User(name, userName, password, 100));
     }
 
 }
