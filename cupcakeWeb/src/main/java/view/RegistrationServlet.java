@@ -2,6 +2,7 @@ package view;
 
 import DTO.User;
 import controller.Controller;
+import controller.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -73,27 +74,31 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Controller c = new Controller();
+        UserController uc = new UserController();
         RequestDispatcher dispatcher = null;
+
+        String username = null;
+        String password = null;
 
         boolean isValid = false;
 
         //Checks if request contains a parameter named "username" and authenticate the username and password if it does
         if (request.getParameter("username") != null) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            isValid = c.checkPassword(username, password);
+            username = request.getParameter("username");
+            password = request.getParameter("password");
+            isValid = uc.checkPassword(username, password);
         }
 
-        //If isValid is changed to true, the dispatcher forwards to the shop
+        //If isValid is changed to true, the dispatcher forwards to the shop. Sets current user to user
         if (isValid) {
+            uc.setCurrentUser(request.getParameter("username"));
             dispatcher = this.getServletContext().getRequestDispatcher("/shop");
             dispatcher.forward(request, response);
         }
 
         //Checks if request contains a parameter named "name" and adds a new user to the database
         if (request.getParameter("name") != null) {
-            c.addUser(request.getParameter("name"), request.getParameter("username"), request.getParameter("password"));
+            uc.addUser(request.getParameter("name"), request.getParameter("username"), request.getParameter("password"));
         }
 
         //Checks if request contains a parameter named "login", if false, registration html is printed. Else, login html is printed

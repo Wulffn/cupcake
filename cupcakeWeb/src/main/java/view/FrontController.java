@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import controller.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Controller c = new Controller();
+        UserController uc = new UserController();
 
         RequestDispatcher dispatcher = null;
 
