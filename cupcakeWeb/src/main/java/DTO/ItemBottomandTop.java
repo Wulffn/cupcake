@@ -48,8 +48,7 @@ public class ItemBottomandTop implements IitemDAO {
         }
         try {
             while (rs.next()) {
-                item.setBottom(rs.getString("itemBottomName"));
-                ItemBottom.add(item);
+                ItemBottom.add(new Item("", rs.getString("itemBottomName")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);

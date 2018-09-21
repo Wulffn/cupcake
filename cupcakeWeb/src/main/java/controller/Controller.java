@@ -17,13 +17,21 @@ import model.UserDAO;
 public class Controller {
     public String getTop()
     {
-        String str = null;
+        String str = "";
         ItemBottomandTop ibt = new ItemBottomandTop();
-        //List l_lList = ibt.ItemTop();
         for (int i = 0; i < ibt.ItemTop().size(); i++)
         {
-            System.out.println("INSIDE LOOP");
             str += "<option value=\"Item1\">" + ibt.ItemTop().get(i).getTopping() + "</option>";
+        }
+        return str;
+    }
+    public String getBottom()
+    {
+        String str = "";
+        ItemBottomandTop ibt = new ItemBottomandTop();
+        for (int i = 0; i < ibt.ItemButton().size(); i++)
+        {
+            str += "<option value=\"Item1\">" + ibt.ItemButton().get(i).getBottom() + "</option>";
         }
         return str;
     }

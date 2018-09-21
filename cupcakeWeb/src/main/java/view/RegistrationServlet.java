@@ -104,7 +104,7 @@ public class RegistrationServlet extends HttpServlet {
         if (request.getParameter("name") != null) {
             uc.addUser(request.getParameter("name"), request.getParameter("username"), request.getParameter("password"));
         }
-
+        
         //Checks if request contains a parameter named "login", if false, registration html is printed. Else, login html is printed
         if (request.getParameter("login") == null) {
             try (PrintWriter out = response.getWriter()) {
