@@ -48,7 +48,7 @@ public class ItemBottomandTop implements IitemDAO {
         }
         try {
             while (rs.next()) {
-                item.setBottom(rs.getString(1));
+                item.setBottom(rs.getString("itemBottomName"));
                 ItemBottom.add(item);
             }
         } catch (SQLException ex) {
@@ -83,8 +83,8 @@ public class ItemBottomandTop implements IitemDAO {
         }
         try {
             while (rs.next()) {
-                item.setTopping(rs.getString(1));
-                ItemTop.add(item);
+                //item.setTopping(rs.getString("itemTopName"));
+                ItemTop.add(new Item(rs.getString("itemTopName"), ""));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);

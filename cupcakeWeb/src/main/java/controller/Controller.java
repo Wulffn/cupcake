@@ -7,6 +7,7 @@ package controller;
 
 import DTO.ItemBottomandTop;
 import DTO.User;
+import java.util.List;
 import model.UserDAO;
 
 /**
@@ -18,9 +19,10 @@ public class Controller {
     {
         String str = null;
         ItemBottomandTop ibt = new ItemBottomandTop();
-        ibt.ItemTop();
+        //List l_lList = ibt.ItemTop();
         for (int i = 0; i < ibt.ItemTop().size(); i++)
         {
+            System.out.println("INSIDE LOOP");
             str += "<option value=\"Item1\">" + ibt.ItemTop().get(i).getTopping() + "</option>";
         }
         return str;
