@@ -25,7 +25,7 @@ public class ItemBottomandTop implements IitemDAO {
     @Override
     public List<Item> ItemButton() {
         List<Item> ItemBottom = new ArrayList();
-        String sql = "SELECT `itemBottomName` FROM `itemBottom`";
+        String sql = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
         Connection c = null;
         Item item = null;
         try {
@@ -48,8 +48,14 @@ public class ItemBottomandTop implements IitemDAO {
         }
         try {
             while (rs.next()) {
-                ItemBottom.add(new Item("", rs.getString("itemBottomName")));
+                ItemBottom.add(new Item("", rs.getString("itemBottomName"), rs.getInt("priceBottom")));
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,7 +65,7 @@ public class ItemBottomandTop implements IitemDAO {
     @Override
     public List<Item> ItemTop() {
         List<Item> ItemTop = new ArrayList();
-        String sql = "SELECT `itemTopName` FROM `itemTop`";
+        String sql = "SELECT `itemTopName`,`priceTop` FROM `itemTop`";
         Connection c = null;
         Item item = null;
         try {
@@ -83,8 +89,13 @@ public class ItemBottomandTop implements IitemDAO {
         try {
             while (rs.next()) {
                 //item.setTopping(rs.getString("itemTopName"));
-                ItemTop.add(new Item(rs.getString("itemTopName"), ""));
+                ItemTop.add(new Item(rs.getString("itemTopName"), "", rs.getInt("priceTop")));
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);
         }

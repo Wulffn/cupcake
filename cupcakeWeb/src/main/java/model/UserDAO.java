@@ -43,11 +43,14 @@ public class UserDAO implements IUserDAO {
                 password = rs.getString("password");
                 balance = rs.getDouble("balance");
             }
-
+            
+            c.close();
         } catch (Exception ex) {
             System.out.println("error");
             ex.printStackTrace();
         }
+       
+        
         return new User(id, name, userName, password, balance);
     }
 
@@ -63,7 +66,7 @@ public class UserDAO implements IUserDAO {
             preparedStatement.setDouble(4, u.getBalance());
             
             preparedStatement.executeUpdate();
-            
+            c.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

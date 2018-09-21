@@ -15,11 +15,11 @@ public class Item {
     private double bottomPrice;
     private double toppingPrice;
     
-    public Item(String topping, String bottom) {
+    public Item(String topping, String bottom, double price) {
         this.topping = topping;
         this.bottom = bottom;
-        this.bottomPrice = bottomPrice;
-        this.toppingPrice = toppingPrice;
+        this.bottomPrice = price;
+        this.toppingPrice = price;
     }
 
     public String getTopping() {

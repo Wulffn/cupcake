@@ -15,23 +15,21 @@ import model.UserDAO;
  * @author Mark
  */
 public class Controller {
-    public String getTop()
-    {
+
+    public String getTop() {
         String str = "";
         ItemBottomandTop ibt = new ItemBottomandTop();
-        for (int i = 0; i < ibt.ItemTop().size(); i++)
-        {
-            str += "<option value=\"Item1\">" + ibt.ItemTop().get(i).getTopping() + "</option>";
+        for (int i = 0; i < ibt.ItemTop().size(); i++) {
+            str += "<option value=\"Item1\">" + ibt.ItemTop().get(i).getTopping() + " " + ibt.ItemTop().get(i).getToppingPrice() + "</option>";
         }
         return str;
     }
-    public String getBottom()
-    {
+
+    public String getBottom() {
         String str = "";
         ItemBottomandTop ibt = new ItemBottomandTop();
-        for (int i = 0; i < ibt.ItemButton().size(); i++)
-        {
-            str += "<option value=\"Item1\">" + ibt.ItemButton().get(i).getBottom() + "</option>";
+        for (int i = 0; i < ibt.ItemButton().size(); i++) {
+            str += "<option value=\"Item1\">" + ibt.ItemButton().get(i).getBottom() + " " + ibt.ItemButton().get(i).getBottomPrice() + "</option>";
         }
         return str;
     }
