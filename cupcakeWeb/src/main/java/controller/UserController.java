@@ -14,7 +14,7 @@ import model.UserDAO;
  */
 public class UserController {
 
-    private User currentUser = null;
+    private static User currentUser = null;
     
 
     public boolean checkPassword(String username, String password) {

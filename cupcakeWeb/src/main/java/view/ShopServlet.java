@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,16 +33,24 @@ public class ShopServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        UserController uc = new UserController();
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>\n"
+            out.println("<!DOCTYPE html>\n"
+                    + "<html>\n"
                     + "    <head>\n"
                     + "        <title>TODO supply a title</title>\n"
                     + "        <meta charset=\"UTF-8\">\n"
                     + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
                     + "    </head>\n"
                     + "    <body>\n"
-                    + "        <div align=\"left\">USERINFO</div>\n"
+                    + "        \n"
+                    + "        <div align=\"right\">\n"
+                    + "            <h5>Current User:</h5>\n"
+                    + "            <p>Name: "  + uc.getCurrentUser().getName() + "</p>\n"
+                    + "            <p>Balance: "  + uc.getCurrentUser().getBalance() + "</p>\n"
+                    + "        </div>\n"
                     + "    </body>\n"
                     + "</html>\n"
                     + "");
