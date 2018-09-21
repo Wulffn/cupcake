@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/RegistrationServlet"})
 public class RegistrationServlet extends HttpServlet {
 
-    boolean isFailed = false;
-
     private String loginHtml() {
         return "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -29,9 +27,9 @@ public class RegistrationServlet extends HttpServlet {
                 + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
                 + "    </head>\n"
                 + "    <body>\n"
+                + "        <div align=\"center\">\n"
                 + "        <h1>Login</h1>\n"
-                + "        <form action=\"registration?login\" method=\"post\">\n"
-                + "            <param name=failed value=\"\">\n"
+                + "        <form action=\"/registration?login\" method=\"post\">\n"
                 + "            Username:<br>\n"
                 + "            <input type=\"text\" name=\"username\" value=\"\">\n"
                 + "            <br>\n"
@@ -39,10 +37,11 @@ public class RegistrationServlet extends HttpServlet {
                 + "            <input type=\"text\" name=\"password\" value=\"\">\n"
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
-                + "             <p>" + (isFailed ? "Wrong username or password" : "") + "</p>"
                 + "        </form>\n"
+                + "        </div>\n"
                 + "    </body>\n"
-                + "</html>";
+                + "</html>\n"
+                + "";
     }
 
     private String regHtml() {
@@ -53,6 +52,7 @@ public class RegistrationServlet extends HttpServlet {
                 + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
                 + "    </head>\n"
                 + "    <body>\n"
+                + "        <div align=\"center\">\n"
                 + "        <h1>Registration</h1>\n"
                 + "        <form action=\"registration?login\" method=\"post\"> \n"
                 + "            Name:<br>\n"
@@ -66,8 +66,10 @@ public class RegistrationServlet extends HttpServlet {
                 + "            <br><br>\n"
                 + "            <input type=\"submit\" value=\"Submit\">\n"
                 + "        </form> \n"
+                + "        </div>\n"
                 + "    </body>\n"
-                + "</html>";
+                + "</html>\n"
+                + "";
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
