@@ -1,7 +1,5 @@
 package presentation;
 
-import DTO.User;
-import logic.Controller;
 import logic.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
