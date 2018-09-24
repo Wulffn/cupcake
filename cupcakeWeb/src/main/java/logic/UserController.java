@@ -6,7 +6,7 @@
 package logic;
 
 import DTO.User;
-import model.UserDAO;
+import data.UserDAO;
 
 /**
  *

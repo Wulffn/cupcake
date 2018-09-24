@@ -8,7 +8,7 @@ package logic;
 import DTO.ItemBottomandTop;
 import DTO.User;
 import java.util.List;
-import model.UserDAO;
+import data.UserDAO;
 
 /**
  *
