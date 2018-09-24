@@ -1,7 +1,7 @@
 
-package view;
+package presentation;
 
-import controller.Controller;
+import logic.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

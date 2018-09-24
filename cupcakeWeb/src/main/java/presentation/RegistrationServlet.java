@@ -1,8 +1,8 @@
-package view;
+package presentation;
 
 import DTO.User;
-import controller.Controller;
-import controller.UserController;
+import logic.Controller;
+import logic.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
