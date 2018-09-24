@@ -21,9 +21,9 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         UserController uc = new UserController();
-
+        
         RequestDispatcher dispatcher = null;
 
         String path = request.getPathInfo();
