@@ -26,10 +26,22 @@ public class Control extends HttpServlet {
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.html").forward(request, response);
                         break;
+                    case "registration":
+                        request.setAttribute("message", "not yet implemented");
+                        request.getRequestDispatcher("login.html").forward(request, response);
+                        break;
+                    case "shop":
+                        request.setAttribute("message", "not yet implemented");
+                        request.getRequestDispatcher("login.html").forward(request, response);
+                        break;
+                    case "orders":
+                        request.setAttribute("message", "not yet implemented");
+                        request.getRequestDispatcher("login.html").forward(request, response);
+                        break;
                     // more cases 
                     default:
                         throw new AssertionError("Error");
-                    
+
                 }
             }
         } catch (Exception e) {
