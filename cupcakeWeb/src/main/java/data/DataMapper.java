@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.DBConnector;
+import data.DBConnector;
 
 public class DataMapper {
 
@@ -59,7 +59,7 @@ public class DataMapper {
         }
         
     public void getOrderAndDetails(int iduser) {
-            return order;
+           
     }
     
     public void getAllOrdersFromUser(int userID) {
@@ -69,24 +69,24 @@ public class DataMapper {
     public void getAllOrders() {
     }
     
-    public List<topping> getItemTops(String topping) {
-        List<topping> topping = new ArrayList<>();
-        
+    public List<Item> getItemTops(String topping) {
+        List<Item> toppingI = new ArrayList<>();
+        return toppingI;
     }
     
-    public List<bottom> getItemBottoms(String bottom) throws Exception {
+    public List<Item> getItemBottoms(String bottom) throws Exception {
        Connection c = new DBConnector().getConnection();
        
-       List<bottom> Bottom = new ArrayList<>(); 
-       
+       List<Item> Bottom = new ArrayList<>(); 
+       return Bottom;
     }
     
     public int getItemTopPrice() {
-        return price;
+        return 0;
     } 
 
     public int getItemBottomPrice() {
-        return price;
+        return 0;
     }
     
     public void addUser(User user) {

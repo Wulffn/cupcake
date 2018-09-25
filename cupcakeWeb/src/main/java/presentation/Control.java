@@ -28,7 +28,7 @@ public class Control extends HttpServlet {
                         break;
                     case "registration":
                         request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("login.html").forward(request, response);
+                        request.getRequestDispatcher("registration.jsp").forward(request, response);
                         break;
                     case "shop":
                         request.setAttribute("message", "not yet implemented");
