@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mark
  */
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
+@WebServlet(name = "Controller", urlPatterns = {"/*"})
 public class Control extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +24,7 @@ public class Control extends HttpServlet {
                 switch (origin) {
                     case "login":
                         request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("html navn").forward(request, response);
+                        request.getRequestDispatcher("login.html").forward(request, response);
                         break;
                     // more cases 
                     default:

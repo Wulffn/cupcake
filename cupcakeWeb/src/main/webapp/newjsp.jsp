@@ -9,14 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JSP Page Testing</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <form action="Control" method="POST"
-            <input type="text" name="username"/>
-            <input type="hidden" name="origin"/>  
-    
-        </form>
+        <div id="container">
+            <div> 
+                <h1>Hello World!</h1>
+                <hr>
+                <form action="Control" method="POST"
+                    <input type="text" name="username"/>
+                    <input type="hidden" name="origin"/>
+                    <input type="submit" value="Submit"/>
+                    <% out.println("javacode"); %>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
