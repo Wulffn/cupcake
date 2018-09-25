@@ -18,9 +18,11 @@
                 <hr>
                 <form action="Control" method="POST"
                     <input type="text" name="username"/>
+                    <input type="text" name="password"/> 
                     <input type="hidden" name="origin"/>
                     <input type="submit" value="Submit"/>
                     <% out.println("javacode"); %>
+                <
                 </form>
             </div>
         </div>

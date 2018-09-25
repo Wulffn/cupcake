@@ -25,8 +25,6 @@ public class LineItem {
         this.cupcake = cupcake;
     }
     
-
-    
     public int getQuantity() {
         return quantity;
     }
