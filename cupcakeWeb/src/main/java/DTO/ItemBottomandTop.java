@@ -22,11 +22,11 @@ import data.DBConnector;
 public class ItemBottomandTop implements IitemDAO {
 
     @Override
-    public List<Item> ItemButton() {
-        List<Item> ItemBottom = new ArrayList();
+    public List<Cupcake> ItemButton() {
+        List<Cupcake> ItemBottom = new ArrayList();
         String sql = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
         Connection c = null;
-        Item item = null;
+        Cupcake item = null;
         try {
             c = new DBConnector().getConnection();
         } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class ItemBottomandTop implements IitemDAO {
         }
         try {
             while (rs.next()) {
-                ItemBottom.add(new Item("", rs.getString("itemBottomName"), rs.getInt("priceBottom")));
+                ItemBottom.add(new Cupcake("", rs.getString("itemBottomName"), rs.getInt("priceBottom")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,11 +62,11 @@ public class ItemBottomandTop implements IitemDAO {
     }
 
     @Override
-    public List<Item> ItemTop() {
-        List<Item> ItemTop = new ArrayList();
+    public List<Cupcake> ItemTop() {
+        List<Cupcake> ItemTop = new ArrayList();
         String sql = "SELECT `itemTopName`,`priceTop` FROM `itemTop`";
         Connection c = null;
-        Item item = null;
+        Cupcake item = null;
         try {
             c = new DBConnector().getConnection();
         } catch (Exception ex) {
@@ -88,7 +88,7 @@ public class ItemBottomandTop implements IitemDAO {
         try {
             while (rs.next()) {
                 //item.setTopping(rs.getString("itemTopName"));
-                ItemTop.add(new Item(rs.getString("itemTopName"), "", rs.getInt("priceTop")));
+                ItemTop.add(new Cupcake(rs.getString("itemTopName"), "", rs.getInt("priceTop")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ItemBottomandTop.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import DTO.Item;
+import DTO.Cupcake;
 import java.util.List;
 
 /**
@@ -13,6 +13,6 @@ import java.util.List;
  * @author Christian
  */
 public interface IitemDAO {
-    List<Item>ItemButton();
-    List<Item>ItemTop();
+    List<Cupcake>ItemButton();
+    List<Cupcake>ItemTop();
 }

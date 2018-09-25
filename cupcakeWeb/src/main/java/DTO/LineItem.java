@@ -16,9 +16,9 @@ public class LineItem {
     private int quantity; 
     private int price; 
     private int invoiceid; 
-    private Item cupcake;  
+    private Cupcake cupcake;  
     
-    public LineItem(int quantity, int price, int invoiceid, Item cupcake) {
+    public LineItem(int quantity, int price, int invoiceid, Cupcake cupcake) {
         this.quantity = quantity;
         this.price = price;
         this.invoiceid = invoiceid;
@@ -37,7 +37,7 @@ public class LineItem {
         return invoiceid;
     }
 
-    public Item getCupcake() {
+    public Cupcake getCupcake() {
         return cupcake;
     }
 
@@ -53,7 +53,7 @@ public class LineItem {
         this.invoiceid = invoiceid;
     }
 
-    public void setCupcake(Item cupcake) {
+    public void setCupcake(Cupcake cupcake) {
         this.cupcake = cupcake;
     }
 

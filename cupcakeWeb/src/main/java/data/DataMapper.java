@@ -1,6 +1,6 @@
 package data;
 
-import DTO.Item;
+import DTO.Cupcake;
 import DTO.Order;
 import DTO.User;
 import java.sql.Connection;
@@ -69,15 +69,15 @@ public class DataMapper {
     public void getAllOrders() {
     }
     
-    public List<Item> getItemTops(String topping) {
-        List<Item> toppingI = new ArrayList<>();
+    public List<Cupcake> getItemTops(String topping) {
+        List<Cupcake> toppingI = new ArrayList<>();
         return toppingI;
     }
     
-    public List<Item> getItemBottoms(String bottom) throws Exception {
+    public List<Cupcake> getItemBottoms(String bottom) throws Exception {
        Connection c = new DBConnector().getConnection();
        
-       List<Item> Bottom = new ArrayList<>(); 
+       List<Cupcake> Bottom = new ArrayList<>(); 
        return Bottom;
     }
     

@@ -9,13 +9,13 @@ package DTO;
  *
  * @author Christian
  */
-public class Item {
+public class Cupcake {
     private String topping;
     private String bottom; 
     private double bottomPrice;
     private double toppingPrice;
     
-    public Item(String topping, String bottom, double price) {
+    public Cupcake(String topping, String bottom, double price) {
         this.topping = topping;
         this.bottom = bottom;
         this.bottomPrice = price;
