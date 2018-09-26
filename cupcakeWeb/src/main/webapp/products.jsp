@@ -15,11 +15,18 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <% DataMapper DM = new DataMapper();
-        //DM.getItemTops();
-        //DM.getItemBottoms();
-        List listbottom = DM.getAllItemBottoms();
-        
+        <%List listbottom = (List) request.getAttribute("productlistsbottom");%>
+        <%List listtop = (List) request.getAttribute("productliststop");%>
+
+
+        <ul>
+            <% for (int i = 0; i < listbottom.size(); i++) {
+                    out.print("<li>" + listbottom.get(i) + "</li>");
+                }
+                for (int i = 0; i < listtop.size(); i++) {
+                    out.print("<li>" + listtop.get(i) + "</li>");
+                }
             %>
+        </ul>
     </body>
 </html>

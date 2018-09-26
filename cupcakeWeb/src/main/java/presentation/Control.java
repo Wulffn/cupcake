@@ -1,6 +1,8 @@
 package presentation;
 
+import data.DataMapper;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +39,20 @@ public class Control extends HttpServlet {
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.html").forward(request, response);
+                        break;
+                    case "products":
+                        DataMapper DM = new DataMapper();
+                        List listbottom = DM.getAllItemBottoms();
+                        List listtop = DM.getAllItemTops();
+                        request.setAttribute("productlistsbottom", listbottom);
+                        request.getRequestDispatcher("products.jsp").forward(request, response);
+                        request.setAttribute("productliststop", listtop);
+                        request.getRequestDispatcher("products.jsp").forward(request, response);
+                        
+                    case "confirmed":
+                        double price = 0;
+                        request.setAttribute("confirmationprice", price);
+                        request.getRequestDispatcher("confirmation.jsp").forward(request, response);
                         break;
                     // more cases 
                     default:
