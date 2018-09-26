@@ -10,5 +10,9 @@ package DTO;
  * @author Christian
  */
 public class Order {
+
+    public Order(int OrderID) {
+        
+    }
     
 }

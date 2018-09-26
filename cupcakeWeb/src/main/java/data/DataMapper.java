@@ -34,9 +34,9 @@ public class DataMapper {
     private final String GET_ALL_USERS = "";
     private final String GET_USER_BY_ID = "";
     private final String GET_ORDER_AND_DETAIL = "";
-    private final String GET_ALL_ORDERS_FROM_USER = "";
+    private final String GET_ALL_ORDERS_FROM_USER = "SELECT `idorder` FROM `order` WHERE order.iduser = ?;";
     //  private final String GET_ALL_ORDERS = "";
-    private final String GET_TOP_BY_ID = "";
+    private final String GET_TOP_BY_ID = "SELECT `itemTopName`,`priceTop` FROM `itemTop` WHERE itemTop.iditemTop ? ?;";
     private final String GET_BOTTOM_BY_ID = "";
     private final String GET_ALL_TOPS = "SELECT `itemTopName`,`priceTop` FROM `itemTop`";
     private final String GET_ALL_BOTTOMS = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
@@ -62,15 +62,28 @@ public class DataMapper {
 
     }
 
-    public void getAllOrdersFromUser(int userID) {
-        return;
+    public List<Order> getAllOrdersFromUser(int userID) throws Exception {
+        List<Order> orders = new ArrayList();
+        Connection c = new DBConnector().getConnection();
+        PreparedStatement stmt = c.prepareStatement(GET_ALL_ORDERS_FROM_USER);
+        stmt.setInt(1, userID);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next())
+        {
+            orders.add(new Order(rs.getInt(1)));
+        }
+        return orders;
     }
 
     public void getAllOrders() {
     }
 
-    public List<Cupcake> getItemTops(String topping) {
+    public List<Cupcake> getItemTops(String topping) throws Exception {
         List<Cupcake> toppingI = new ArrayList<>();
+        Connection c = new DBConnector().getConnection();
+        PreparedStatement stmt = c.prepareStatement("");
+        ResultSet rs = stmt.executeQuery();
+         
         return toppingI;
     }
 
@@ -91,7 +104,8 @@ public class DataMapper {
         c.close();
         return Bottom;
     }
-     public List<Cupcake> getAllItemTops() throws Exception {
+
+    public List<Cupcake> getAllItemTops() throws Exception {
         Connection c = new DBConnector().getConnection();
         List<Cupcake> Tops = new ArrayList<>();
         PreparedStatement stmt = c.prepareStatement(GET_ALL_TOPS);
