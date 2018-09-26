@@ -4,6 +4,7 @@
     Author     : Christian
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="data.DataMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
         <% DataMapper DM = new DataMapper();
         //DM.getItemTops();
         //DM.getItemBottoms();
+        List listbottom = DM.getAllItemBottoms();
         
             %>
     </body>

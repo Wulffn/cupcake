@@ -5,7 +5,9 @@
  */
 package logic;
 
-import DTO.ItemBottomandTop;
+import data.DataMapper;
+
+
 
 /**
  *
@@ -13,20 +15,20 @@ import DTO.ItemBottomandTop;
  */
 public class Controller {
 
-    public String getTop() {
+    public String getTop() throws Exception {
         String str = "";
-        ItemBottomandTop ibt = new ItemBottomandTop();
-        for (int i = 0; i < ibt.ItemTop().size(); i++) {
-            str += "<option value=\"Item1\">" + ibt.ItemTop().get(i).getTopping() + " " + ibt.ItemTop().get(i).getToppingPrice() + "</option>";
+        DataMapper DM = new DataMapper();
+        for (int i = 0; i < DM.getAllItemTops().size(); i++) {
+            str += "<option value=\"Item1\">" + DM.getAllItemTops().get(i).getTopping() + " " + DM.getAllItemTops().get(i).getToppingPrice() + "</option>";
         }
         return str;
     }
 
-    public String getBottom() {
+    public String getBottom() throws Exception {
         String str = "";
-        ItemBottomandTop ibt = new ItemBottomandTop();
-        for (int i = 0; i < ibt.ItemButton().size(); i++) {
-            str += "<option value=\"Item1\">" + ibt.ItemButton().get(i).getBottom() + " " + ibt.ItemButton().get(i).getBottomPrice() + "</option>";
+        DataMapper DM = new DataMapper();
+        for (int i = 0; i < DM.getAllItemBottoms().size(); i++) {
+            str += "<option value=\"Item1\">" + DM.getAllItemBottoms().get(i).getBottom() + " " + DM.getAllItemBottoms().get(i).getBottomPrice() + "</option>";
         }
         return str;
     }

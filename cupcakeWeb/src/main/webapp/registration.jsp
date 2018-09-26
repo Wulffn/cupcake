@@ -17,6 +17,7 @@
         <h1>Registration</h1>
         <form action="registration?login" method="post"> 
             Name:<br>
+            <%  %>
             <input type="text" name="name" value="">
             <br>
             Username:<br>

@@ -38,12 +38,12 @@ public class DataMapper {
     //  private final String GET_ALL_ORDERS = "";
     private final String GET_TOP_BY_ID = "";
     private final String GET_BOTTOM_BY_ID = "";
-    private final String GET_ALL_TOPS = "";
-    private final String GET_ALL_BOTTOMS = "";
+    private final String GET_ALL_TOPS = "SELECT `itemTopName`,`priceTop` FROM `itemTop`";
+    private final String GET_ALL_BOTTOMS = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
     private final String GET_TOP_PRICE = "";
     private final String GET_BOTTOM_PRICE = "";
 
-    public List<String> getAllUsers() throws Exception {    
+    public List<String> getAllUsers() throws Exception {
         List<String> users = new ArrayList();
         try {
             Connection c = new DBConnector().getConnection();
@@ -53,45 +53,67 @@ public class DataMapper {
                 users.add(rs.getString("userName"));
             }
         } catch (SQLException ex) {
-          ex.printStackTrace();
+            ex.printStackTrace();
         }
-            return users;
-        }
-        
-    public void getOrderAndDetails(int iduser) {
-           
+        return users;
     }
-    
+
+    public void getOrderAndDetails(int iduser) {
+
+    }
+
     public void getAllOrdersFromUser(int userID) {
         return;
     }
 
     public void getAllOrders() {
     }
-    
+
     public List<Cupcake> getItemTops(String topping) {
         List<Cupcake> toppingI = new ArrayList<>();
         return toppingI;
     }
-    
+
     public List<Cupcake> getItemBottoms(String bottom) throws Exception {
-       Connection c = new DBConnector().getConnection();
-       
-       List<Cupcake> Bottom = new ArrayList<>(); 
-       return Bottom;
+        Connection c = new DBConnector().getConnection();
+        List<Cupcake> Bottom = new ArrayList<>();
+        return Bottom;
     }
-    
+
+    public List<Cupcake> getAllItemBottoms() throws Exception {
+        Connection c = new DBConnector().getConnection();
+        List<Cupcake> Bottom = new ArrayList<>();
+        PreparedStatement stmt = c.prepareStatement(GET_ALL_BOTTOMS);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Bottom.add(new Cupcake("", rs.getString("itemBottomName"), rs.getInt("priceBottom")));
+        }
+        c.close();
+        return Bottom;
+    }
+     public List<Cupcake> getAllItemTops() throws Exception {
+        Connection c = new DBConnector().getConnection();
+        List<Cupcake> Tops = new ArrayList<>();
+        PreparedStatement stmt = c.prepareStatement(GET_ALL_TOPS);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Tops.add(new Cupcake("", rs.getString("itemBottomName"), rs.getInt("priceBottom")));
+        }
+        c.close();
+        return Tops;
+    }
+
     public int getItemTopPrice() {
         return 0;
-    } 
+    }
 
     public int getItemBottomPrice() {
         return 0;
     }
-    
+
     public void addUser(User user) {
     }
-    
+
     public void addOrder(Order order) {
     }
 }
