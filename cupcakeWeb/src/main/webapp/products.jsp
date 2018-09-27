@@ -33,13 +33,11 @@
             <div class="col-md-3">
                 <h5>Bottom</h5>
                 <select> 
-                    
-                    <option>Choose Bottom</option>
-                    <%for (int i = 0; i < listbottom.size();i++)
-                    {
-                        out.print("<option> "+listbottom.get(i).getBottom() +" </option>");
-                    }
-}%>
+                    <option>Choose Bottom</option>  
+                    <% for (Cupcake cupcake : listbottom) {
+                            out.print("<option>" + cupcake.getBottom() + "</option>");
+                        }
+                    %>
                 </select>
             </div>
             <div class="col-md-3"></div>
