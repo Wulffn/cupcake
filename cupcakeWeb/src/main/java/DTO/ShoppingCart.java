@@ -13,14 +13,49 @@ import java.util.List;
  * @author Markj
  */
 public class ShoppingCart {
-   private List<LineItem> cupcakes = new ArrayList(); 
+    private int invoice_id;
+    private List<LineItem> lineitem;
+    private int Quantity;
+    private double totalPrice;
 
-    public List<LineItem> getCupcakes() {
-        return cupcakes;
+    public ShoppingCart(List<LineItem> lineitem, int Quantity, double totalPrice) {
+        this.lineitem = lineitem;
+        this.Quantity = Quantity;
+        this.totalPrice = totalPrice;
     }
+
+    public int getInvoice_id() {
+        return invoice_id;
+    }
+
+    public void setInvoice_id(int invoice_id) {
+        this.invoice_id = invoice_id;
+    }
+
+    public List<LineItem> getLineitem() {
+        return lineitem;
+    }
+
+    public void setLineitem(List<LineItem> lineitem) {
+        this.lineitem = lineitem;
+    }
+
+    public int getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(int Quantity) {
+        this.Quantity = Quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
    
-    public void addCupcake(LineItem lineItem) {
-        cupcakes.add(lineItem);
-    }
     
 }

@@ -12,50 +12,31 @@ import java.util.List;
  *
  * @author Markj
  */
-public class LineItem {
-    private int quantity; 
+public class LineItem { 
     private int price; 
-    private int invoiceid; 
     private Cupcake cupcake;  
-    
-    public LineItem(int quantity, int price, int invoiceid, Cupcake cupcake) {
-        this.quantity = quantity;
+
+    public LineItem(int price, Cupcake cupcake) {
         this.price = price;
-        this.invoiceid = invoiceid;
         this.cupcake = cupcake;
-    }
-    
-    public int getQuantity() {
-        return quantity;
     }
 
     public int getPrice() {
-        return price * quantity;
-    }
-
-    public int getInvoiceid() {
-        return invoiceid;
-    }
-
-    public Cupcake getCupcake() {
-        return cupcake;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setInvoiceid(int invoiceid) {
-        this.invoiceid = invoiceid;
+    public Cupcake getCupcake() {
+        return cupcake;
     }
 
     public void setCupcake(Cupcake cupcake) {
         this.cupcake = cupcake;
     }
-
+    
+    
    
 }
