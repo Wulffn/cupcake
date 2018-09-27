@@ -1,5 +1,6 @@
 package presentation;
 
+import DTO.Cupcake;
 import DTO.User;
 import data.DataMapper;
 import logic.Controller;
@@ -53,8 +54,8 @@ public class Control extends HttpServlet {
                         } else {
                             System.out.println("Current user != null");
                             DataMapper DM = new DataMapper();
-                            List listbottom = DM.getAllItemBottoms();
-                            List listtop = DM.getAllItemTops();
+                            List<Cupcake> listbottom = DM.getAllItemBottoms();
+                            List<Cupcake> listtop = DM.getAllItemTops();
                             request.setAttribute("productlistsbottom", listbottom);
                             request.setAttribute("productliststop", listtop);
                             request.getRequestDispatcher("products.jsp").forward(request, response);

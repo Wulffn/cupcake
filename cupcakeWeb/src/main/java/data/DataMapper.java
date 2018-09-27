@@ -40,7 +40,7 @@ public class DataMapper {
     //  private final String GET_ALL_ORDERS = "";
     private final String GET_TOP_BY_ID = "SELECT `itemTopName`,`priceTop` FROM `itemTop` WHERE itemTop.iditemTop ? ?;";
     private final String GET_BOTTOM_BY_ID = "";
-    private final String GET_ALL_TOPS = "SELECT `itemTopName`,`priceTop` FROM `itemTop`";
+    private final String GET_ALL_TOPS = "SELECT `itemTopName`,`priceTop` FROM `itemTop`;";
     private final String GET_ALL_BOTTOMS = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
     private final String GET_TOP_PRICE = "";
     private final String GET_BOTTOM_PRICE = "";
