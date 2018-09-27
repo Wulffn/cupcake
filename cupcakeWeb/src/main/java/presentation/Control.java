@@ -46,18 +46,20 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("login.html").forward(request, response);
                         break;
                     case "products":
+                        System.out.println("PRODUCTS");
                         if (request.getSession().getAttribute("currentUser") == null) {
+                            System.out.println("Current user = null");
                             request.getRequestDispatcher("login.html").forward(request, response);
                         } else {
+                            System.out.println("Current user != null");
                             DataMapper DM = new DataMapper();
                             List listbottom = DM.getAllItemBottoms();
                             List listtop = DM.getAllItemTops();
                             request.setAttribute("productlistsbottom", listbottom);
-                            request.getRequestDispatcher("products.jsp").forward(request, response);
                             request.setAttribute("productliststop", listtop);
                             request.getRequestDispatcher("products.jsp").forward(request, response);
                         }
-
+                        break;
                     case "confirmed":
                         double price = 0;
                         request.setAttribute("confirmationprice", price);
