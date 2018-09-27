@@ -32,7 +32,7 @@ public class DataMapper {
     
      */
     private final String GET_ALL_USERS = "";
-    private final String GET_USER_BY_ID = "";
+    private final String GET_USER_BY_ID = "SELECT * FROM `user` WHERE user.userName = ?;";
     private final String GET_ORDER_AND_DETAIL = "";
     private final String GET_ALL_ORDERS_FROM_USER = "SELECT `idorder` FROM `order` WHERE order.iduser = ?;";
     //  private final String GET_ALL_ORDERS = "";
@@ -57,9 +57,27 @@ public class DataMapper {
         }
         return users;
     }
+    public User getUser(String username) throws Exception
+    {
+        User user = new User("", "", "", 0.0);
+        Connection c = new DBConnector().getConnection();
+        PreparedStatement stmt = c.prepareStatement(GET_USER_BY_ID);
+        stmt.setString(1, username); 
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next())
+        {
+            user.setBalance(rs.getDouble("balance"));
+            user.setId(rs.getInt("iduser"));
+            user.setName(username);
+            user.setName("personName");
+            user.setPassword("password");
+            user.setUsername(username);
+        }
+        return user;
+    }
 
-    public void getOrderAndDetails(int iduser) {
-
+    public void getOrderAndDetails(int iduser) throws Exception {
+        
     }
 
     public List<Order> getAllOrdersFromUser(int userID) throws Exception {
