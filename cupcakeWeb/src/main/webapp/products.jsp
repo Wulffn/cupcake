@@ -4,12 +4,14 @@
     Author     : Christian
 --%>
 
+<%@page import="DTO.User"%>
 <%@page import="DTO.Cupcake"%>
 <%@page import="java.util.List"%>
 <%@page import="data.DataMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%List<Cupcake> listbottom = (List) request.getAttribute("productlistsbottom");%>
 <%List<Cupcake> listtop = (List) request.getAttribute("productliststop");%>
+<%User currentUser = (User) request.getSession().getAttribute("currentUser");%>
 
 <!DOCTYPE html>
 <html>
@@ -25,45 +27,52 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">cupcake shop</a>
+                    <a class="navbar-brand" href="#">Cupcake Shop</a>
+                </div>
+                <div class="pull-right" id="userBar">
+                    <a class="navbar-brand">Logged in as: <% out.print(currentUser.getName()); %></a>
+                    <a class="navbar-brand">Balance: <% out.print(currentUser.getBalance()); %></a>
                 </div>
             </div>
         </nav>
-        
+
         <div class="col-md-12">
             <h3>Compose cupcakes from 1 bottom and 1 top and add to the shopping cart</h3>
             <hr> 
-        </div> 
+        </div>
+
         <div>
-            <div class="col-md-3">
-                <h5>Bottom</h5>
-                <select> 
-                    <option>Choose Bottom</option>  
-                    <% for (Cupcake cupcake : listbottom) {
-                            out.print("<option>" + cupcake.getBottom() + " " + cupcake.getBottomPrice() + "</option>");
-                        }
-                    %>
-                </select>
-                
-            </div>
+            <form action="Control" method="post">
+                <div class="col-md-3">
+                    <h5>Bottom</h5>
+
+                    <select name="bottom"> 
+                        <option>Choose Bottom</option>  
+                        <% for (Cupcake cupcake : listbottom) {
+                                out.print("<option value=" + cupcake.getBottom() + ">" + cupcake.getBottom() + " " + cupcake.getBottomPrice() + "</option>");
+                            }
+                        %>
+                    </select>
+
+                </div>
                 <div class="col-md-3">
                     <h5>Top</h5>
-                <select> 
-                    <option>Choose Top</option>  
-                    <% for (Cupcake cupcake : listtop) {
-                            out.print("<option>" + cupcake.getTopping()+ " " + cupcake.getToppingPrice()+ "</option>");
-                        }
-                    %>
-                </select>
+                    <select name="top"> 
+                        <option>Choose Top</option>  
+                        <% for (Cupcake cupcake : listtop) {
+                                out.print("<option value=" + cupcake.getTopping() + ">" + cupcake.getTopping() + " " + cupcake.getToppingPrice() + "</option>");
+                            }
+                        %>
+                    </select>
                 </div>
                 <div class="col-md-6">
-                    <form>
-                        <h5>selecting</h5>
-                        <input type="text" name="quantity" value="" placeholder="Quantity">
-                        <input type="submit" value="add to cart">
-                    </form>
+                    <h5>selecting</h5>
+                    <input type="text" name="quantity" value="" placeholder="Quantity">
+                    <input type="submit" value="addtocart">
+                    <input type="hidden" name="origin" value="products">
                 </div>
-            
+            </form>
         </div>
+
     </body>
 </html>

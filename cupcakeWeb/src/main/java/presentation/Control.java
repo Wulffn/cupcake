@@ -27,11 +27,14 @@ public class Control extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        String itemTop = request.getParameter("top");
+        String itemBottom = request.getParameter("bottom");
+        String quantity = request.getParameter("quantity");
+
         setCurrentUser(username, password, request, response);
 
         try {
             String origin = request.getParameter("origin");
-            System.out.println("Origin= " + origin);
             if (origin != null) {
                 switch (origin) {
                     case "login":
@@ -47,12 +50,9 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("login.html").forward(request, response);
                         break;
                     case "products":
-                        System.out.println("PRODUCTS");
                         if (request.getSession().getAttribute("currentUser") == null) {
-                            System.out.println("Current user = null");
                             request.getRequestDispatcher("login.html").forward(request, response);
                         } else {
-                            System.out.println("Current user != null");
                             DataMapper DM = new DataMapper();
                             List<Cupcake> listbottom = DM.getAllItemBottoms();
                             List<Cupcake> listtop = DM.getAllItemTops();
