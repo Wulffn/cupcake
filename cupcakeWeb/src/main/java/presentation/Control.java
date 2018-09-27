@@ -26,7 +26,7 @@ public class Control extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        setCurrentUser(username, password, request);
+        setCurrentUser(username, password, request, response);
 
         try {
             String origin = request.getParameter("origin");
@@ -41,8 +41,14 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("registration.jsp").forward(request, response);
                         break;
                     case "shop":
-                        request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("shop.html").forward(request, response);
+                        if (request.getSession().getAttribute("currentUser") == null) {
+                            request.getRequestDispatcher("login.html").forward(request, response);
+
+                        } else {
+                            request.setAttribute("message", "not yet implemented");
+                            request.getRequestDispatcher("shop.html").forward(request, response);
+                        }
+
                         break;
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
@@ -72,14 +78,22 @@ public class Control extends HttpServlet {
         }
     }
 
-    private void setCurrentUser(String username, String password, HttpServletRequest request) {
+    private void setCurrentUser(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isValid = false;
+        System.out.println("Into method");
+        System.out.println(username);
+        System.out.println(password);
         if (username != null) {
+            System.out.println("Checking isValid");
             isValid = new Controller().checkPassword(username, password);
+            System.out.println("isValid = " + isValid);
             if (isValid) {
                 User u = new DataMapper().getUser(username);
                 request.getSession().setAttribute("currentUser", u);
             }
+        } else {
+            request.getRequestDispatcher("login.html").forward(request, response);
+            System.out.println("DSKLMVGKSDFLÆMVSFÆV;ÆSV;ÆSDMVFKSÆMVKLSFM VKLFSV");
         }
     }
 

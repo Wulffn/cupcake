@@ -35,6 +35,7 @@ public class Controller {
 
     public boolean checkPassword(String username, String password) {
         User user = new DataMapper().getUser(username);
+        System.out.println(user.getName());
         if (password == null || username.equals(password)) {
             return false;
         }
