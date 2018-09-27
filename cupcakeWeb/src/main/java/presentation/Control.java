@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mark
  */
-@WebServlet(name = "Controller", urlPatterns = {"/*"})
+@WebServlet(name = "Controller", urlPatterns = {"/Control"})
 public class Control extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -34,7 +34,7 @@ public class Control extends HttpServlet {
                         break;
                     case "shop":
                         request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("login.html").forward(request, response);
+                        request.getRequestDispatcher("shop.html").forward(request, response);
                         break;
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
