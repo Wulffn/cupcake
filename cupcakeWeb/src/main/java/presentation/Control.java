@@ -30,6 +30,7 @@ public class Control extends HttpServlet {
 
         try {
             String origin = request.getParameter("origin");
+            System.out.println("Origin= " + origin);
             if (origin != null) {
                 switch (origin) {
                     case "login":
@@ -40,28 +41,22 @@ public class Control extends HttpServlet {
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("registration.jsp").forward(request, response);
                         break;
-                    case "shop":
-                        if (request.getSession().getAttribute("currentUser") == null) {
-                            request.getRequestDispatcher("login.html").forward(request, response);
-
-                        } else {
-                            request.setAttribute("message", "not yet implemented");
-                            request.getRequestDispatcher("shop.html").forward(request, response);
-                        }
-
-                        break;
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.html").forward(request, response);
                         break;
                     case "products":
-                        DataMapper DM = new DataMapper();
-                        List listbottom = DM.getAllItemBottoms();
-                        List listtop = DM.getAllItemTops();
-                        request.setAttribute("productlistsbottom", listbottom);
-                        request.getRequestDispatcher("products.jsp").forward(request, response);
-                        request.setAttribute("productliststop", listtop);
-                        request.getRequestDispatcher("products.jsp").forward(request, response);
+                        if (request.getSession().getAttribute("currentUser") == null) {
+                            request.getRequestDispatcher("login.html").forward(request, response);
+                        } else {
+                            DataMapper DM = new DataMapper();
+                            List listbottom = DM.getAllItemBottoms();
+                            List listtop = DM.getAllItemTops();
+                            request.setAttribute("productlistsbottom", listbottom);
+                            request.getRequestDispatcher("products.jsp").forward(request, response);
+                            request.setAttribute("productliststop", listtop);
+                            request.getRequestDispatcher("products.jsp").forward(request, response);
+                        }
 
                     case "confirmed":
                         double price = 0;
@@ -80,20 +75,14 @@ public class Control extends HttpServlet {
 
     private void setCurrentUser(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isValid = false;
-        System.out.println("Into method");
-        System.out.println(username);
-        System.out.println(password);
         if (username != null) {
-            System.out.println("Checking isValid");
             isValid = new Controller().checkPassword(username, password);
-            System.out.println("isValid = " + isValid);
             if (isValid) {
                 User u = new DataMapper().getUser(username);
                 request.getSession().setAttribute("currentUser", u);
             }
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
-            System.out.println("DSKLMVGKSDFLÆMVSFÆV;ÆSV;ÆSDMVFKSÆMVKLSFM VKLFSV");
         }
     }
 
