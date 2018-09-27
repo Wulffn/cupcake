@@ -5,9 +5,9 @@
  */
 package logic;
 
+import DTO.User;
 import data.DataMapper;
-
-
+import data.UserDAO;
 
 /**
  *
@@ -31,5 +31,13 @@ public class Controller {
             str += "<option value=\"Item1\">" + DM.getAllItemBottoms().get(i).getBottom() + " " + DM.getAllItemBottoms().get(i).getBottomPrice() + "</option>";
         }
         return str;
+    }
+
+    public boolean checkPassword(String username, String password) {
+        User user = new DataMapper().getUser(username);
+        if (password == null || username.equals(password)) {
+            return false;
+        }
+        return password.equals(user.getPassword());
     }
 }

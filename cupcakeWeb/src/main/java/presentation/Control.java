@@ -1,6 +1,8 @@
 package presentation;
 
+import DTO.User;
 import data.DataMapper;
+import logic.Controller;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -20,6 +22,12 @@ public class Control extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* SE PÅ URL PATTERN */
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        setCurrentUser(username, password, request);
+
         try {
             String origin = request.getParameter("origin");
             if (origin != null) {
@@ -48,7 +56,7 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("products.jsp").forward(request, response);
                         request.setAttribute("productliststop", listtop);
                         request.getRequestDispatcher("products.jsp").forward(request, response);
-                        
+
                     case "confirmed":
                         double price = 0;
                         request.setAttribute("confirmationprice", price);
@@ -61,6 +69,17 @@ public class Control extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+        }
+    }
+
+    private void setCurrentUser(String username, String password, HttpServletRequest request) {
+        boolean isValid = false;
+        if (username != null) {
+            isValid = new Controller().checkPassword(username, password);
+            if (isValid) {
+                User u = new DataMapper().getUser(username);
+                request.getSession().setAttribute("currentUser", u);
+            }
         }
     }
 
