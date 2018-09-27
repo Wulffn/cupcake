@@ -138,7 +138,7 @@ public class DataMapper {
         PreparedStatement stmt = c.prepareStatement(GET_ALL_TOPS);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Tops.add(new Cupcake("", rs.getString("itemTopName"), rs.getInt("priceTop")));
+            Tops.add(new Cupcake(rs.getString("itemTopName"), "", rs.getInt("priceTop")));
         }
         c.close();
         return Tops;

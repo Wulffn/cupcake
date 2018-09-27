@@ -29,20 +29,41 @@
                 </div>
             </div>
         </nav>
+        
+        <div class="col-md-12">
+            <h3>Compose cupcakes from 1 bottom and 1 top and add to the shopping cart</h3>
+            <hr> 
+        </div> 
         <div>
             <div class="col-md-3">
                 <h5>Bottom</h5>
                 <select> 
                     <option>Choose Bottom</option>  
                     <% for (Cupcake cupcake : listbottom) {
-                            out.print("<option>" + cupcake.getBottom() + "</option>");
+                            out.print("<option>" + cupcake.getBottom() + " " + cupcake.getBottomPrice() + "</option>");
                         }
                     %>
                 </select>
+                
             </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <h5>Top</h5>
+                <select> 
+                    <option>Choose Top</option>  
+                    <% for (Cupcake cupcake : listtop) {
+                            out.print("<option>" + cupcake.getTopping()+ " " + cupcake.getToppingPrice()+ "</option>");
+                        }
+                    %>
+                </select>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <h5>selecting</h5>
+                        <input type="text" name="quantity" value="" placeholder="Quantity">
+                        <input type="submit" value="add to cart">
+                    </form>
+                </div>
+            
         </div>
     </body>
 </html>
