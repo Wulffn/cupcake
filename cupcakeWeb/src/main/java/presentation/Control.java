@@ -7,6 +7,7 @@ import DTO.User;
 import data.DataMapper;
 import logic.Controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +33,7 @@ public class Control extends HttpServlet {
         String itemTop = request.getParameter("top");
         String itemBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
+        String price = request.getParameter("price");
         
         /**
         Ikke færdig - men giver en ide om hvor vi skal hen
@@ -42,7 +44,16 @@ public class Control extends HttpServlet {
             ShoppingCart shoppingCart = new ShoppingCart();
         }
         
+        * //aktuel ide men ved ikke hvordan jeg skulle få price- Christian
+        * if (itemTop != null && itemBottom != null) {
+            List<LineItem> list = new ArrayList();
+            Cupcake cupcake = new Cupcake(itemTop, itemBottom, Double.valueOf(quantity));
+            LineItem lineItem = new LineItem(Integer.valueOf(quantity), cupcake);
+            list.add(lineItem);
+            ShoppingCart shoppingCart = new ShoppingCart(list, Integer.valueOf(quantity), Integer.valueOf(price));
+        }
         */
+        
 
         setCurrentUser(username, password, request, response);
 
@@ -75,8 +86,9 @@ public class Control extends HttpServlet {
                         }
                         break;
                     case "confirmed":
-                        double price = 0;
-                        request.setAttribute("confirmationprice", price);
+                        //skal ændres
+                        double l_dprice = 0;
+                        request.setAttribute("confirmationprice", l_dprice);
                         request.getRequestDispatcher("confirmation.jsp").forward(request, response);
                         break;
                     // more cases 
