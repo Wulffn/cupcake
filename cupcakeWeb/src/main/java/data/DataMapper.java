@@ -45,11 +45,11 @@ public class DataMapper {
     private final String GET_TOP_PRICE = "";
     private final String GET_BOTTOM_PRICE = "";
 
-    public List<String> getAllUsers()  {
+    public List<String> getAllUsers() {
         List<String> users = new ArrayList();
-         Connection c;
+        Connection c;
         try {
-             c = new DBConnector().getConnection();
+            c = new DBConnector().getConnection();
             PreparedStatement pstmt = c.prepareStatement(GET_ALL_USERS);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -86,7 +86,7 @@ public class DataMapper {
     }
 
     public void getOrderAndDetails(int iduser) throws Exception {
-        
+
     }
 
     public List<Order> getAllOrdersFromUser(int userID) throws Exception {
@@ -98,6 +98,7 @@ public class DataMapper {
         while (rs.next()) {
             orders.add(new Order(rs.getInt("idorder"), rs.getDouble("totalPrice"), rs.getInt("iduser")));
         }
+        c.close();
         return orders;
     }
 
@@ -151,7 +152,21 @@ public class DataMapper {
         return 0;
     }
 
-    public void addUser(User user) {
+    public void addUser(User u) {
+        String sql = "insert into user(personName, userName, password, balance) values(?,?,?,?);";
+        try {
+            Connection c = new DBConnector().getConnection();
+            PreparedStatement preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setString(1, u.getName());
+            preparedStatement.setString(2, u.getUsername());
+            preparedStatement.setString(3, u.getPassword());
+            preparedStatement.setDouble(4, u.getBalance());
+
+            preparedStatement.executeUpdate();
+            c.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void addOrder(Order order) {
