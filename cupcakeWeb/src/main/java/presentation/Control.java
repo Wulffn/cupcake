@@ -1,6 +1,8 @@
 package presentation;
 
 import DTO.Cupcake;
+import DTO.LineItem;
+import DTO.ShoppingCart;
 import DTO.User;
 import data.DataMapper;
 import logic.Controller;
@@ -30,6 +32,17 @@ public class Control extends HttpServlet {
         String itemTop = request.getParameter("top");
         String itemBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
+        
+        /**
+        Ikke færdig - men giver en ide om hvor vi skal hen
+        * 
+        if(itemTop != null) {
+            Cupcake cupcake = new Cupcake(itemTop, itemBottom, 1.0);
+            LineItem lineItem = new LineItem(Integer.valueOf(quantity), 1, 1, cupcake);
+            ShoppingCart shoppingCart = new ShoppingCart();
+        }
+        
+        */
 
         setCurrentUser(username, password, request, response);
 
