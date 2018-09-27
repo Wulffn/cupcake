@@ -68,7 +68,6 @@ public class DataMapper {
         {
             user.setBalance(rs.getDouble("balance"));
             user.setId(rs.getInt("iduser"));
-            user.setName(username);
             user.setName("personName");
             user.setPassword("password");
             user.setUsername(username);
