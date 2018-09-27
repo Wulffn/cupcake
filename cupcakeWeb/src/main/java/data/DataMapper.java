@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import data.DBConnector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataMapper {
 
@@ -57,26 +59,31 @@ public class DataMapper {
         }
         return users;
     }
-    public User getUser(String username) throws Exception
-    {
+
+    public User getUser(String username) {
         User user = new User("", "", "", 0.0);
-        Connection c = new DBConnector().getConnection();
-        PreparedStatement stmt = c.prepareStatement(GET_USER_BY_ID);
-        stmt.setString(1, username); 
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next())
-        {
-            user.setBalance(rs.getDouble("balance"));
-            user.setId(rs.getInt("iduser"));
-            user.setName("personName");
-            user.setPassword("password");
-            user.setUsername(username);
+        Connection c;
+        try {
+            c = new DBConnector().getConnection();
+
+            PreparedStatement stmt = c.prepareStatement(GET_USER_BY_ID);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                user.setBalance(rs.getDouble("balance"));
+                user.setId(rs.getInt("iduser"));
+                user.setName("personName");
+                user.setPassword("password");
+                user.setUsername(username);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
 
     public void getOrderAndDetails(int iduser) throws Exception {
-        
+
     }
 
     public List<Order> getAllOrdersFromUser(int userID) throws Exception {
@@ -85,8 +92,7 @@ public class DataMapper {
         PreparedStatement stmt = c.prepareStatement(GET_ALL_ORDERS_FROM_USER);
         stmt.setInt(1, userID);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next())
-        {
+        while (rs.next()) {
             orders.add(new Order(rs.getInt(1)));
         }
         return orders;
@@ -100,7 +106,7 @@ public class DataMapper {
         Connection c = new DBConnector().getConnection();
         PreparedStatement stmt = c.prepareStatement("");
         ResultSet rs = stmt.executeQuery();
-         
+
         return toppingI;
     }
 
