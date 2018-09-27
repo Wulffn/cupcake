@@ -36,7 +36,7 @@ public class DataMapper {
     private final String GET_ALL_USERS = "";
     private final String GET_USER_BY_ID = "SELECT * FROM `user` WHERE user.userName = ?;";
     private final String GET_ORDER_AND_DETAIL = "";
-    private final String GET_ALL_ORDERS_FROM_USER = "SELECT `idorder` FROM `order` WHERE order.iduser = ?;";
+    private final String GET_ALL_ORDERS_FROM_USER = "SELECT * FROM `order` WHERE order.iduser = ?;";
     //  private final String GET_ALL_ORDERS = "";
     private final String GET_TOP_BY_ID = "SELECT `itemTopName`,`priceTop` FROM `itemTop` WHERE itemTop.iditemTop ? ?;";
     private final String GET_BOTTOM_BY_ID = "";
@@ -45,10 +45,11 @@ public class DataMapper {
     private final String GET_TOP_PRICE = "";
     private final String GET_BOTTOM_PRICE = "";
 
-    public List<String> getAllUsers() throws Exception {
+    public List<String> getAllUsers()  {
         List<String> users = new ArrayList();
+         Connection c;
         try {
-            Connection c = new DBConnector().getConnection();
+             c = new DBConnector().getConnection();
             PreparedStatement pstmt = c.prepareStatement(GET_ALL_USERS);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -56,6 +57,8 @@ public class DataMapper {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(DataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return users;
     }
@@ -72,8 +75,8 @@ public class DataMapper {
             if (rs.next()) {
                 user.setBalance(rs.getDouble("balance"));
                 user.setId(rs.getInt("iduser"));
-                user.setName("personName");
-                user.setPassword("password");
+                user.setName(rs.getString("personName"));
+                user.setPassword(rs.getString("password"));
                 user.setUsername(username);
             }
         } catch (Exception ex) {
@@ -83,7 +86,7 @@ public class DataMapper {
     }
 
     public void getOrderAndDetails(int iduser) throws Exception {
-
+        
     }
 
     public List<Order> getAllOrdersFromUser(int userID) throws Exception {
@@ -93,7 +96,7 @@ public class DataMapper {
         stmt.setInt(1, userID);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            orders.add(new Order(rs.getInt(1)));
+            orders.add(new Order(rs.getInt("idorder"), rs.getDouble("totalPrice"), rs.getInt("iduser")));
         }
         return orders;
     }

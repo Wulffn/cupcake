@@ -11,7 +11,7 @@ package DTO;
  */
 public class Order {
 
-    public Order(int OrderID) {
+    public Order(int OrderID, double totalprice, int iduser) {
         
     }
     
