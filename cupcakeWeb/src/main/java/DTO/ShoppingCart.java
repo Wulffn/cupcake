@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ShoppingCart {
     private int invoice_id;
-    private List<LineItem> lineitem;
+    private List<LineItem> lineitem = new ArrayList();
     private int Quantity;
     private double totalPrice;
 

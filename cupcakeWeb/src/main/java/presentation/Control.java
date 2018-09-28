@@ -31,13 +31,11 @@ public class Control extends HttpServlet {
         String productTop = request.getParameter("top");
         String productBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
-        
-        addToShoppingCart(productBottom, productTop, request);
-        
-        setCurrentUser(username, password, request, response);
-        newShoppingCart(request);
-        
 
+        newShoppingCart(request);
+       
+        addToShoppingCart(productBottom, productTop, request);
+        setCurrentUser(username, password, request, response);
 
         /**
          * Ikke færdig - men giver en ide om hvor vi skal hen
@@ -55,7 +53,6 @@ public class Control extends HttpServlet {
          * ShoppingCart shoppingCart = new ShoppingCart(list,
          * Integer.valueOf(quantity), Integer.valueOf(price)); }
          */
-        
         try {
             String origin = request.getParameter("origin");
             if (origin != null) {
@@ -101,20 +98,24 @@ public class Control extends HttpServlet {
     }
 
     private void addToShoppingCart(String productBottom, String productTop, HttpServletRequest request) throws NumberFormatException {
-        if (productBottom != null || productTop != null) {
+        if (productBottom != null && productTop != null) {
             String[] arr = productBottom.split(",");
             String itemBottomName = arr[0];
-            double itemBottomPrice =  Double.valueOf(arr[1]);
-            
+            double itemBottomPrice = Double.valueOf(arr[1]);
+
             arr = productTop.split(",");
             String itemTopName = arr[0];
-            double itemTopPrice =  Double.valueOf(arr[1]);
+            double itemTopPrice = Double.valueOf(arr[1]);
             
-            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName , itemBottomName));
+            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName, itemBottomName));
+          
             ShoppingCart sc = (ShoppingCart) request.getSession().getAttribute("shoppingcart");
+           
             sc.getLineitem().add(lt);
-            request.getSession().setAttribute("shoppingcart", sc);
+    
             
+            request.getSession().setAttribute("shoppingcart", sc);
+            System.out.println("LOOK HERE" + sc.getLineitem().get(0).getCupcake().getBottom().toString());
         }
     }
 
@@ -136,8 +137,8 @@ public class Control extends HttpServlet {
             request.getRequestDispatcher("login.html").forward(request, response);
         }
     }
-    
-        private boolean checkPassword(String username, String password) {
+
+    private boolean checkPassword(String username, String password) {
         User user = new DataMapper().getUser(username);
         if (password == null || username.equals(password)) {
             return false;

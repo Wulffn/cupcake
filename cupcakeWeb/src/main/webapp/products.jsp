@@ -4,6 +4,7 @@
     Author     : Christian
 --%>
 
+<%@page import="DTO.LineItem"%>
 <%@page import="DTO.User"%>
 <%@page import="DTO.Cupcake"%>
 <%@page import="java.util.List"%>
@@ -11,6 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%List<Cupcake> listbottom = (List) request.getAttribute("productlistsbottom");%>
 <%List<Cupcake> listtop = (List) request.getAttribute("productliststop");%>
+<%//List<LineItem> listlineitem = (List) request.getSession().getAttribute("shoppingcart");%>
 <%User currentUser = (User) request.getSession().getAttribute("currentUser");%>
 
 <!DOCTYPE html>
@@ -73,6 +75,13 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-12">
+            <%
+                
+                    //out.print(lineitem.getCupcake().getBottom());
 
+                //out.print(listlineitem.get(0).getCupcake().getBottom());
+            %>
+        </div>
     </body>
 </html>
