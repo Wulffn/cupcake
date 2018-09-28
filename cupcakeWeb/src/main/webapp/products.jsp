@@ -76,20 +76,21 @@
                 </div>
             </form>
         </div>
+        <hr>
         <div class="col-md-12">
-            <%
-                for (int i = 0; i < sc.getLineitem().size();i++)
-                {
-                    out.print(sc.getLineitem().get(i).getCupcake().getBottom());
-                    
+            <% out.print("<table class=\"table table-striped\"><thead><tr><th scope=\"col\">Bottom</th><th scope=\"col\">Top</th><th scope=\"col\">Quantity</th><th scope=\"col\">Price</th>");
+               out.print("<h4>Shopping Cart</h4>");
+                for (int i = 0; i < sc.getLineitem().size(); i++) {
+                    out.print("<tbody><tr><th scope=\"row\"> " + sc.getLineitem().get(i).getCupcake().getBottom() + "</th>");
+                    out.print("<th scope=\"row\"> " + sc.getLineitem().get(i).getCupcake().getTopping() + "</th>");
+                    out.print("<th scope=\"row\">Quantity</th>");
+                    out.print("<th scope=\"row\">Price</th></tr></tbody>");
                 }
-                
-                    //out.print(listlineitem.get(i).getCupcake().getBottom());
-               
-                    
+                out.print("</table>");
 
+                //out.print(listlineitem.get(i).getCupcake().getBottom());
                 //out.print(listlineitem.get(0).getCupcake().getBottom());
-            %>
+%>
         </div>
     </body>
 </html>
