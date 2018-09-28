@@ -32,24 +32,12 @@ public class Control extends HttpServlet {
         String productBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
         
-        if (productBottom != null || productTop != null) {
-            String[] arr = productBottom.split(",");
-            String itemBottomName = arr[0];
-            double itemBottomPrice =  Double.valueOf(arr[1]);
-
-            arr = productTop.split(",");
-            String itemTopName = arr[0];
-            double itemTopPrice =  Double.valueOf(arr[1]);
-            
-            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName , itemBottomName));
-            request.getSession().getAttribute("shoppingcart");
-        }
+        addToShoppingCart(productBottom, productTop, request);
         
-        
-//        String price = request.getParameter("price");
-
         setCurrentUser(username, password, request, response);
         newShoppingCart(request);
+        
+
 
         /**
          * Ikke færdig - men giver en ide om hvor vi skal hen
@@ -109,6 +97,24 @@ public class Control extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+        }
+    }
+
+    private void addToShoppingCart(String productBottom, String productTop, HttpServletRequest request) throws NumberFormatException {
+        if (productBottom != null || productTop != null) {
+            String[] arr = productBottom.split(",");
+            String itemBottomName = arr[0];
+            double itemBottomPrice =  Double.valueOf(arr[1]);
+            
+            arr = productTop.split(",");
+            String itemTopName = arr[0];
+            double itemTopPrice =  Double.valueOf(arr[1]);
+            
+            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName , itemBottomName));
+            ShoppingCart sc = (ShoppingCart) request.getSession().getAttribute("shoppingcart");
+            sc.getLineitem().add(lt);
+            request.getSession().setAttribute("shoppingcart", sc);
+            
         }
     }
 
