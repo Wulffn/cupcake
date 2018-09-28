@@ -40,11 +40,9 @@ public class Control extends HttpServlet {
             arr = productTop.split(",");
             String itemTopName = arr[0];
             double itemTopPrice =  Double.valueOf(arr[1]);
-
-            System.out.println("1." + itemBottomName);
-            System.out.println("2." + itemBottomPrice);
-            System.out.println("3." + itemTopName);
-            System.out.println("4." + itemTopPrice);
+            
+            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName , itemBottomName));
+            request.getSession().getAttribute("shoppingcart");
         }
         
         

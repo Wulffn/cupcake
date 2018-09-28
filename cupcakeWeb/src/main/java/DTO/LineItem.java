@@ -13,15 +13,15 @@ import java.util.List;
  * @author Markj
  */
 public class LineItem { 
-    private int price; 
+    private double price; 
     private Cupcake cupcake;  
 
-    public LineItem(int price, Cupcake cupcake) {
+    public LineItem(double price, Cupcake cupcake) {
         this.price = price;
         this.cupcake = cupcake;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
