@@ -49,7 +49,7 @@
                     <select name="bottom"> 
                         <option>Choose Bottom</option>  
                         <% for (Cupcake cupcake : listbottom) {
-                                out.print("<option value=" + cupcake.getBottom() + ">" + cupcake.getBottom() + " " + cupcake.getBottomPrice() + "</option>");
+                                out.print("<option value=" + cupcake.getBottom() + "," + cupcake.getBottomPrice() + ">" + cupcake.getBottom() + " " + cupcake.getBottomPrice() + "</option>");
                             }
                         %>
                     </select>
@@ -60,7 +60,7 @@
                     <select name="top"> 
                         <option>Choose Top</option>  
                         <% for (Cupcake cupcake : listtop) {
-                                out.print("<option value=" + cupcake.getTopping() + ">" + cupcake.getTopping() + " " + cupcake.getToppingPrice() + "</option>");
+                                out.print("<option value=" + cupcake.getTopping() + "," + cupcake.getToppingPrice() + ">" + cupcake.getTopping() + " " + cupcake.getToppingPrice() + "</option>");
                             }
                         %>
                     </select>

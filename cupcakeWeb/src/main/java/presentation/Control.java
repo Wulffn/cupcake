@@ -32,7 +32,11 @@ public class Control extends HttpServlet {
         String itemTop = request.getParameter("top");
         String itemBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
-        String price = request.getParameter("price");
+        String itemTopPrice;
+        String itemBottomPrice;
+//        String price = request.getParameter("price");
+        
+        System.out.println(itemBottom);
 
         setCurrentUser(username, password, request, response);
         newShoppingCart(request);
