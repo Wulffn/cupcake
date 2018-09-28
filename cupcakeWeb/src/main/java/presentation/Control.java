@@ -28,14 +28,27 @@ public class Control extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String itemTop = request.getParameter("top");
-        String itemBottom = request.getParameter("bottom");
+        String productTop = request.getParameter("top");
+        String productBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
-        String itemTopPrice;
-        String itemBottomPrice;
-//        String price = request.getParameter("price");
         
-        System.out.println(itemBottom);
+        if (productBottom != null || productTop != null) {
+            String[] arr = productBottom.split(",");
+            String itemBottomName = arr[0];
+            double itemBottomPrice =  Double.valueOf(arr[1]);
+
+            arr = productTop.split(",");
+            String itemTopName = arr[0];
+            double itemTopPrice =  Double.valueOf(arr[1]);
+
+            System.out.println("1." + itemBottomName);
+            System.out.println("2." + itemBottomPrice);
+            System.out.println("3." + itemTopName);
+            System.out.println("4." + itemTopPrice);
+        }
+        
+        
+//        String price = request.getParameter("price");
 
         setCurrentUser(username, password, request, response);
         newShoppingCart(request);
