@@ -18,6 +18,13 @@ public class ShoppingCart {
     private int Quantity;
     private double totalPrice;
 
+    public ShoppingCart(List<LineItem> lineitem, int Quantity) {
+        this.lineitem = lineitem;
+        this.Quantity = Quantity;
+    }
+    
+    
+
     public ShoppingCart(List<LineItem> lineitem, int Quantity, double totalPrice) {
         this.lineitem = lineitem;
         this.Quantity = Quantity;

@@ -14,6 +14,12 @@ public class Cupcake {
     private String bottom; 
     private double bottomPrice;
     private double toppingPrice;
+
+    public Cupcake(String topping, String bottom) {
+        this.topping = topping;
+        this.bottom = bottom;
+    }
+    
     
     public Cupcake(String topping, String bottom, double price) {
         this.topping = topping;
