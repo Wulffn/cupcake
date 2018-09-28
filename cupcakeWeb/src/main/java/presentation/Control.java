@@ -33,7 +33,7 @@ public class Control extends HttpServlet {
         String quantity = request.getParameter("quantity");
 
         newShoppingCart(request);
-       
+
         addToShoppingCart(productBottom, productTop, request);
         setCurrentUser(username, password, request, response);
 
@@ -102,18 +102,12 @@ public class Control extends HttpServlet {
             String[] arr = productBottom.split(",");
             String itemBottomName = arr[0];
             double itemBottomPrice = Double.valueOf(arr[1]);
-
             arr = productTop.split(",");
             String itemTopName = arr[0];
             double itemTopPrice = Double.valueOf(arr[1]);
-            
             LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName, itemBottomName));
-          
             ShoppingCart sc = (ShoppingCart) request.getSession().getAttribute("shoppingcart");
-           
             sc.getLineitem().add(lt);
-    
-            
             request.getSession().setAttribute("shoppingcart", sc);
             System.out.println("LOOK HERE" + sc.getLineitem().get(0).getCupcake().getBottom().toString());
         }
