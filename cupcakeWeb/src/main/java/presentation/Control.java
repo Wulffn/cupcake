@@ -59,7 +59,7 @@ public class Control extends HttpServlet {
                 switch (origin) {
                     case "login":
                         request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("login.html").forward(request, response);
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
                     case "registration":
                         request.setAttribute("message", "not yet implemented");
@@ -67,11 +67,11 @@ public class Control extends HttpServlet {
                         break;
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("login.html").forward(request, response);
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
                     case "products":
                         if (request.getSession().getAttribute("currentUser") == null) {
-                            request.getRequestDispatcher("login.html").forward(request, response);
+                            request.getRequestDispatcher("login.jsp").forward(request, response);
                         } else {
                             DataMapper DM = new DataMapper();
                             List<Cupcake> listbottom = DM.getAllItemBottoms();
@@ -128,7 +128,7 @@ public class Control extends HttpServlet {
                 request.getSession().setAttribute("currentUser", u);
             }
         } else {
-            request.getRequestDispatcher("login.html").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 
