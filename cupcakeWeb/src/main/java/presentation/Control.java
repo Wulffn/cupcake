@@ -5,7 +5,6 @@ import DTO.LineItem;
 import DTO.ShoppingCart;
 import DTO.User;
 import data.DataMapper;
-import logic.Controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,7 +110,7 @@ public class Control extends HttpServlet {
     private void setCurrentUser(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isValid = false;
         if (username != null) {
-            isValid = new Controller().checkPassword(username, password);
+            isValid = checkPassword(username, password);
             if (isValid) {
                 User u = new DataMapper().getUser(username);
                 request.getSession().setAttribute("currentUser", u);
@@ -119,6 +118,14 @@ public class Control extends HttpServlet {
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
         }
+    }
+    
+        private boolean checkPassword(String username, String password) {
+        User user = new DataMapper().getUser(username);
+        if (password == null || username.equals(password)) {
+            return false;
+        }
+        return password.equals(user.getPassword());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
