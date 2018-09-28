@@ -29,34 +29,31 @@ public class Control extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         String itemTop = request.getParameter("top");
         String itemBottom = request.getParameter("bottom");
         String quantity = request.getParameter("quantity");
         String price = request.getParameter("price");
-        
-        /**
-        Ikke færdig - men giver en ide om hvor vi skal hen
-        * 
-        if(itemTop != null) {
-            Cupcake cupcake = new Cupcake(itemTop, itemBottom, 1.0);
-            LineItem lineItem = new LineItem(Integer.valueOf(quantity), 1, 1, cupcake);
-            ShoppingCart shoppingCart = new ShoppingCart();
-        }
-        
-        * //aktuel ide men ved ikke hvordan jeg skulle få price- Christian
-        * if (itemTop != null && itemBottom != null) {
-            List<LineItem> list = new ArrayList();
-            Cupcake cupcake = new Cupcake(itemTop, itemBottom, Double.valueOf(quantity));
-            LineItem lineItem = new LineItem(Integer.valueOf(quantity), cupcake);
-            list.add(lineItem);
-            ShoppingCart shoppingCart = new ShoppingCart(list, Integer.valueOf(quantity), Integer.valueOf(price));
-        }
-        */
-        
 
         setCurrentUser(username, password, request, response);
+        newShoppingCart(request);
 
+        /**
+         * Ikke færdig - men giver en ide om hvor vi skal hen
+         *
+         * if(itemTop != null) { Cupcake cupcake = new Cupcake(itemTop,
+         * itemBottom, 1.0); LineItem lineItem = new
+         * LineItem(Integer.valueOf(quantity), 1, 1, cupcake); ShoppingCart
+         * shoppingCart = new ShoppingCart(); }
+         *
+         * //aktuel ide men ved ikke hvordan jeg skulle få price- Christian if
+         * (itemTop != null && itemBottom != null) { List<LineItem> list = new
+         * ArrayList(); Cupcake cupcake = new Cupcake(itemTop, itemBottom,
+         * Double.valueOf(quantity)); LineItem lineItem = new
+         * LineItem(Integer.valueOf(quantity), cupcake); list.add(lineItem);
+         * ShoppingCart shoppingCart = new ShoppingCart(list,
+         * Integer.valueOf(quantity), Integer.valueOf(price)); }
+         */
+        
         try {
             String origin = request.getParameter("origin");
             if (origin != null) {
@@ -98,6 +95,12 @@ public class Control extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+        }
+    }
+
+    private void newShoppingCart(HttpServletRequest request) {
+        if (request.getSession().getAttribute("shoppingcart") == null) {
+            request.getSession().setAttribute("shoppingcart", new ShoppingCart());
         }
     }
 

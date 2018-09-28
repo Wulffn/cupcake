@@ -24,6 +24,9 @@ public class ShoppingCart {
         this.totalPrice = totalPrice;
     }
 
+    public ShoppingCart() {
+    }
+
     public int getInvoice_id() {
         return invoice_id;
     }
