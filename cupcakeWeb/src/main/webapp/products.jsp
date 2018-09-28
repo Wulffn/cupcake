@@ -12,7 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%List<Cupcake> listbottom = (List) request.getAttribute("productlistsbottom");%>
 <%List<Cupcake> listtop = (List) request.getAttribute("productliststop");%>
-<%//List<LineItem> listlineitem = (List) request.getSession().getAttribute("shoppingcart");%>
+<%List<LineItem> listlineitem = (List) request.getSession().getAttribute("shoppingcart");%>
 <%User currentUser = (User) request.getSession().getAttribute("currentUser");%>
 
 <!DOCTYPE html>
@@ -78,7 +78,9 @@
         <div class="col-md-12">
             <%
                 
-                    //out.print(lineitem.getCupcake().getBottom());
+                    //out.print(listlineitem.get(i).getCupcake().getBottom());
+               
+                    
 
                 //out.print(listlineitem.get(0).getCupcake().getBottom());
             %>
