@@ -44,6 +44,17 @@ public class DataMapper {
     private final String GET_ALL_BOTTOMS = "SELECT `itemBottomName`,`priceBottom` FROM `itemBottom`";
     private final String GET_TOP_PRICE = "";
     private final String GET_BOTTOM_PRICE = "";
+    private final String INSERT_ORDER = "INSERT INTO `order` (`idorder`,`totalPrice`,`iduser`) VALUES (?, ?, ?)";
+
+    public void InsertOrder(int idOrder, double totalprice, int iduser) throws Exception {
+        Connection c = new DBConnector().getConnection();
+        PreparedStatement stmt = c.prepareStatement(INSERT_ORDER);
+        stmt.setInt(1, idOrder);
+        stmt.setDouble(2, totalprice);
+        stmt.setInt(3, iduser);
+        stmt.execute();
+        c.close();
+    }
 
     public List<String> getAllUsers() {
         List<String> users = new ArrayList();
@@ -95,6 +106,7 @@ public class DataMapper {
         PreparedStatement stmt = c.prepareStatement(GET_ALL_ORDERS_FROM_USER);
         stmt.setInt(1, userID);
         ResultSet rs = stmt.executeQuery();
+
         while (rs.next()) {
             orders.add(new Order(rs.getInt("idorder"), rs.getDouble("totalPrice"), rs.getInt("iduser")));
         }

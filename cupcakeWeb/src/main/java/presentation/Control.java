@@ -25,7 +25,7 @@ public class Control extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* SE PÅ URL PATTERN */
-
+ /*
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String productTop = request.getParameter("top");
@@ -36,7 +36,7 @@ public class Control extends HttpServlet {
 
         addToShoppingCart(productBottom, productTop, request);
         setCurrentUser(username, password, request, response);
-
+         */
         /**
          * Ikke færdig - men giver en ide om hvor vi skal hen
          *
@@ -58,6 +58,8 @@ public class Control extends HttpServlet {
             if (origin != null) {
                 switch (origin) {
                     case "login":
+                        String username = request.getParameter("username");
+                        String password = request.getParameter("password");
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
@@ -124,6 +126,9 @@ public class Control extends HttpServlet {
         if (username != null) {
             isValid = checkPassword(username, password);
             if (isValid) {
+                /*TODO
+                request instead of username/pw
+                */
                 User u = new DataMapper().getUser(username);
                 request.getSession().setAttribute("currentUser", u);
             }
