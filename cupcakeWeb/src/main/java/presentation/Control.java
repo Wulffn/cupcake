@@ -26,6 +26,7 @@ public class Control extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         /* SE PÅ URL PATTERN */
  /*
+         */
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String productTop = request.getParameter("top");
@@ -36,7 +37,6 @@ public class Control extends HttpServlet {
 
         addToShoppingCart(productBottom, productTop, request);
         setCurrentUser(username, password, request, response);
-         */
         /**
          * Ikke færdig - men giver en ide om hvor vi skal hen
          *
@@ -58,8 +58,8 @@ public class Control extends HttpServlet {
             if (origin != null) {
                 switch (origin) {
                     case "login":
-                        String username = request.getParameter("username");
-                        String password = request.getParameter("password");
+                        //String username = request.getParameter("username");
+                        //String password = request.getParameter("password");
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
