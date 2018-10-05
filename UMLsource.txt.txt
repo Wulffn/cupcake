@@ -1,0 +1,13 @@
+https://www.planttext.com/
+@startuml
+[*] --> loginSiteRegisterSite
+loginSiteRegisterSite : Username
+loginSiteRegisterSite : password
+loginSiteRegisterSite -> CupCakeShop
+CupCakeShop --> OrderSite
+CupCakeShop : Bottom
+CupCakeShop : Top
+CupCakeShop : Quantity
+OrderSite -> confirmation
+confirmation -->[*]
+@enduml
