@@ -11,3 +11,41 @@ CupCakeShop : Quantity
 OrderSite -> confirmation
 confirmation -->[*]
 @enduml
+
+
+@startuml
+
+title "Cupcake purchase - Sequence Diagram"
+
+actor User
+boundary Products.jsp
+participant ShoppingCart
+participant ControlServlet
+participant Datamapper
+database CupcakeDatabase
+
+ControlServlet -> Datamapper : case "products"
+Datamapper -> CupcakeDatabase : getAllItemBottoms()
+CupcakeDatabase --> Datamapper : resultSet
+Datamapper --> ControlServlet : list<bottom>
+ControlServlet -> Datamapper 
+Datamapper -> CupcakeDatabase : getAllItemTops()
+CupcakeDatabase --> Datamapper : resultSet
+Datamapper --> ControlServlet : list<top>
+ControlServlet --> Products.jsp : Attribute listBottom
+ControlServlet --> Products.jsp : Attribute listTop
+Products.jsp -> User : shop 
+
+User -> Products.jsp : itemTop & itemBottom
+Products.jsp -> ShoppingCart : addCupcake
+
+User -> Products.jsp : Purchase
+Products.jsp -> ControlServlet : http POST purchase
+ControlServlet -> Datamapper : Session(ShoppingCart)
+Datamapper -> CupcakeDatabase : executeQuery(insert)
+Datamapper -> Datamapper : validate insert
+Datamapper -> ControlServlet : OK
+ControlServlet -> Products.jsp 
+Products.jsp -> User : Purchased/failed
+
+@enduml
