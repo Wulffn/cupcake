@@ -72,7 +72,7 @@ public class Control extends HttpServlet {
                         user.setBalance(100.0);
                         DataMapper dm = new DataMapper();
                         dm.addUser(user);
-                        
+                        request.getSession().setAttribute("user", user);
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                         //break;
                     case "orders":
