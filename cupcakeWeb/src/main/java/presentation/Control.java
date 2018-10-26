@@ -36,7 +36,9 @@ public class Control extends HttpServlet {
         newShoppingCart(request);
 
         addToShoppingCart(productBottom, productTop, request);
-        setCurrentUser(username, password, request, response);
+        if (request.getSession().getAttribute("currentUser") == null) {
+            setCurrentUser(username, password, request, response);
+        }
         /**
          * Ikke færdig - men giver en ide om hvor vi skal hen
          *
@@ -128,7 +130,7 @@ public class Control extends HttpServlet {
             if (isValid) {
                 /*TODO
                 request instead of username/pw
-                */
+                 */
                 User u = new DataMapper().getUser(username);
                 request.getSession().setAttribute("currentUser", u);
             }
