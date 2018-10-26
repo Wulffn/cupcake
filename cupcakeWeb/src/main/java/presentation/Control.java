@@ -31,7 +31,6 @@ public class Control extends HttpServlet {
         String password = request.getParameter("password");
         String productTop = request.getParameter("top");
         String productBottom = request.getParameter("bottom");
-        String quantity = request.getParameter("quantity");
 
         newShoppingCart(request);
 
@@ -103,13 +102,14 @@ public class Control extends HttpServlet {
 
     private void addToShoppingCart(String productBottom, String productTop, HttpServletRequest request) throws NumberFormatException {
         if (productBottom != null && productTop != null) {
+            int qty = Integer.valueOf(request.getParameter("quantity"));
             String[] arr = productBottom.split(",");
             String itemBottomName = arr[0];
             double itemBottomPrice = Double.valueOf(arr[1]);
             arr = productTop.split(",");
             String itemTopName = arr[0];
             double itemTopPrice = Double.valueOf(arr[1]);
-            LineItem lt = new LineItem(itemBottomPrice + itemTopPrice, new Cupcake(itemTopName, itemBottomName));
+            LineItem lt = new LineItem(qty, itemBottomPrice + itemTopPrice, new Cupcake(itemTopName, itemBottomName));
             ShoppingCart sc = (ShoppingCart) request.getSession().getAttribute("shoppingcart");
             sc.getLineitem().add(lt);
             request.getSession().setAttribute("shoppingcart", sc);

@@ -83,8 +83,8 @@
                 for (int i = 0; i < sc.getLineitem().size(); i++) {
                     out.print("<tbody><tr><th scope=\"row\"> " + sc.getLineitem().get(i).getCupcake().getBottom() + "</th>");
                     out.print("<th scope=\"row\"> " + sc.getLineitem().get(i).getCupcake().getTopping() + "</th>");
-                    out.print("<th scope=\"row\">Quantity</th>");
-                    out.print("<th scope=\"row\">Price</th></tr></tbody>");
+                    out.print("<th scope=\"row\"> " + sc.getLineitem().get(i).getQty() + "</th>");
+                    out.print("<th scope=\"row\"> " + sc.getLineitem().get(i).getPrice() + " </th></tr></tbody>");
                 }
                 out.print("</table>");
 

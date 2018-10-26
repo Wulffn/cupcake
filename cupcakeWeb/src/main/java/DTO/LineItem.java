@@ -12,12 +12,15 @@ import java.util.List;
  *
  * @author Markj
  */
-public class LineItem { 
+public class LineItem {
+    
+    private int qty;
     private double price; 
     private Cupcake cupcake;  
 
-    public LineItem(double price, Cupcake cupcake) {
-        this.price = price;
+    public LineItem(int qty, double price, Cupcake cupcake) {
+        this.qty = qty;
+        this.price = price * qty;
         this.cupcake = cupcake;
     }
 
@@ -36,7 +39,13 @@ public class LineItem {
     public void setCupcake(Cupcake cupcake) {
         this.cupcake = cupcake;
     }
-    
-    
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
    
 }
