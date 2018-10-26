@@ -175,7 +175,7 @@ public class DataMapper {
             preparedStatement.setDouble(4, u.getBalance());
 
             preparedStatement.executeUpdate();
-            c.close();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

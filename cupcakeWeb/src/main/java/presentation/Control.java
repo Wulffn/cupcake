@@ -65,9 +65,16 @@ public class Control extends HttpServlet {
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
                     case "registration":
-                        request.setAttribute("message", "not yet implemented");
-                        request.getRequestDispatcher("registration.jsp").forward(request, response);
-                        break;
+                         User user = new User(0, "", "", "", 0.0);
+                        user.setName(request.getParameter("usernameRegistration"));
+                        user.setUsername(request.getParameter("usernameRegistration"));
+                        user.setPassword(request.getParameter("passwordRegistration"));
+                        user.setBalance(100.0);
+                        DataMapper dm = new DataMapper();
+                        dm.addUser(user);
+                        
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        //break;
                     case "orders":
                         request.setAttribute("message", "not yet implemented");
                         request.getRequestDispatcher("login.jsp").forward(request, response);
